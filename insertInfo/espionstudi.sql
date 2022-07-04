@@ -96,19 +96,18 @@ insert into type (name) values ('help a political opponent');
 insert into type (name) values ('operate under false flags');
 
 insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
- values ('Bulgarian umbrella','empoisonner la cible','Boa Zinc Teal','2022-09-01 00:00:00','2022-09-02 00:00:00','8','1','1');
+ values ('Bulgarian umbrella','empoisonner la cible','Boa Zinc Teal','Ukraine','2022-09-01 00:00:00','2022-09-02 00:00:00','8','1','1');
 insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
- values ('Valiant Victory','collecter des informations sensibles','Corgi Iron Crow','2022-05-09 00:00:00','2022-05-12 00:00:00','12','3','2');
+ values ('Valiant Victory','collecter des informations sensibles','France','Corgi Iron Crow','2022-05-09 00:00:00','2022-05-12 00:00:00','12','3','2');
 insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
- values ('Evening Beauty','corrompre un chef d état','Bissau Oyster Red','2021-06-01 00:00:00','2022-09-02 00:00:00','6','2','3');
+ values ('Evening Beauty','corrompre un chef d état','Bissau Oyster Red','Russia','2021-06-01 00:00:00','2022-09-02 00:00:00','6','2','3');
 insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
- values ('Cobra of the Honor','voler un composant chimique','Blue Paper Dog','2021-05-09 00:00:00','2022-05-12 00:00:00','7','2','6');
+ values ('Cobra of the Honor','voler un composant chimique','Blue Paper Dog','China','2021-05-09 00:00:00','2022-05-12 00:00:00','7','2','6');
 insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
- values ('Rolling Whisper','assassiner un homme politique','Snail Jackson Olive','2022-10-01 00:00:00','2022-011-02 00:00:00','1','1','12');
+ values ('Rolling Whisper','assassiner un homme politique','Snail Jackson Olive','United States','2022-10-01 00:00:00','2022-011-02 00:00:00','1','1','12');
 insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
- values ('Gray King','exfiltrer un dissident politique','Swan Vinous Fahrenheit','2021-01-01 00:00:00','2021-01-12 00:00:00','5','4','11');
-insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
- values (' Last Lion','faire voter un texte de loi par un président étranger favorable à nos intérêts','Dalton Tuvalu Red','2022-07-01 00:00:00','2021-07-12 00:00:00','11','2','3'); 
+ values ('Gray King','exfiltrer un dissident politique','Swan Vinous Fahrenheit','South Korea','2021-01-01 00:00:00','2021-01-12 00:00:00','5','4','11');
+
 
 insert into skillagent (skill_id,agent_id) values (8,4);
 insert into skillagent (skill_id,agent_id) values (12,5);
@@ -123,3 +122,30 @@ insert into missionagent (mission_id,agent_id) values (3,6);
 insert into missionagent (mission_id,agent_id) values (4,3);
 insert into missionagent (mission_id,agent_id) values (5,1);
 insert into missionagent (mission_id,agent_id) values (6,2);
+
+insert into stash (code,address,type,country_id,mission_id) values ('54868-6111', '9511 West Place','villa',1,1);
+insert into stash (code,address,type,country_id,mission_id) values ('60505-2582', '3316 Dunning Street','factory',3,2);
+insert into stash (code,address,type,country_id,mission_id) values ('13533-684', '4 Lotheville Road','building',4,3);
+insert into stash (code,address,type,country_id,mission_id) values ('54305-102', '4 Warbler Plaza','office',5,4);
+insert into stash (code,address,type,country_id,mission_id) values ('66213-423', '7753 North Road','mobil-home',7,5);
+insert into stash (code,address,type,country_id,mission_id) values ('0591-3451', '2414 Dayton Drive','house',13,6);
+
+insert into missioncontact (mission_id,contact_id) values(1,1);
+insert into missioncontact (mission_id,contact_id) values(2,3);
+insert into missioncontact (mission_id,contact_id) values(3,4);
+insert into missioncontact (mission_id,contact_id) values(4,5);
+insert into missioncontact (mission_id,contact_id) values(5,7);
+insert into missioncontact (mission_id,contact_id) values(6,13);
+
+insert into target  (name,firstname,date_of_birth,codeName,nationality_id,mission_id)
+values ('Porochenko','Stepan','1955-09-04','Beetle',1,1);
+insert into target  (name,firstname,date_of_birth,codeName,nationality_id,mission_id)
+values ('Martin','Victor','1985-01-12','Gray',3,2);
+insert into target  (name,firstname,date_of_birth,codeName,nationality_id,mission_id)
+values ('Safin','Vladimir','1991-08-14','Red',4,3);
+insert into target  (name,firstname,date_of_birth,codeName,nationality_id,mission_id)
+values ('Wey','Brenda','1965-11-06','Worm',5,4);
+insert into target  (name,firstname,date_of_birth,codeName,nationality_id,mission_id)
+values ('Gates','Bill','1956-02-10','Arn',7,5);
+insert into target  (name,firstname,date_of_birth,codeName,nationality_id,mission_id)
+values ('Park','John','1981-11-12','Rock',13,6);
