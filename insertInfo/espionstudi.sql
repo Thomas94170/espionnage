@@ -95,17 +95,17 @@ insert into type (name) values ('infiltrate a terrorist group');
 insert into type (name) values ('help a political opponent');
 insert into type (name) values ('operate under false flags');
 
-insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+insert into missions (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
  values ('Bulgarian umbrella','empoisonner la cible','Boa Zinc Teal','Ukraine','2022-09-01 00:00:00','2022-09-02 00:00:00','8','1','1');
-insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+insert into missions (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
  values ('Valiant Victory','collecter des informations sensibles','France','Corgi Iron Crow','2022-05-09 00:00:00','2022-05-12 00:00:00','12','3','2');
-insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+insert into missions (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
  values ('Evening Beauty','corrompre un chef d état','Bissau Oyster Red','Russia','2021-06-01 00:00:00','2022-09-02 00:00:00','6','2','3');
-insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+insert into missions (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
  values ('Cobra of the Honor','voler un composant chimique','Blue Paper Dog','China','2021-05-09 00:00:00','2022-05-12 00:00:00','7','2','6');
-insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+insert into missions (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
  values ('Rolling Whisper','assassiner un homme politique','Snail Jackson Olive','United States','2022-10-01 00:00:00','2022-011-02 00:00:00','1','1','12');
-insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+insert into missions (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
  values ('Gray King','exfiltrer un dissident politique','Swan Vinous Fahrenheit','South Korea','2021-01-01 00:00:00','2021-01-12 00:00:00','5','4','11');
 
 
