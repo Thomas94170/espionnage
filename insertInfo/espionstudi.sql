@@ -79,6 +79,8 @@ insert into skill (speciality) values ('infiltration');
 insert into status (conditions) values ('beginning');
 insert into status (conditions) values ('in progress');
 insert into status (conditions) values ('completed');
+insert into status (conditions) values ('failure');
+
 
 insert into type (name) values ('murder a known man');
 insert into type (name) values ('collection of information');
@@ -92,3 +94,32 @@ insert into type (name) values ('destroy evidence');
 insert into type (name) values ('infiltrate a terrorist group');
 insert into type (name) values ('help a political opponent');
 insert into type (name) values ('operate under false flags');
+
+insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+ values ('Bulgarian umbrella','empoisonner la cible','Boa Zinc Teal','2022-09-01 00:00:00','2022-09-02 00:00:00','8','1','1');
+insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+ values ('Valiant Victory','collecter des informations sensibles','Corgi Iron Crow','2022-05-09 00:00:00','2022-05-12 00:00:00','12','3','2');
+insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+ values ('Evening Beauty','corrompre un chef d état','Bissau Oyster Red','2021-06-01 00:00:00','2022-09-02 00:00:00','6','2','3');
+insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+ values ('Cobra of the Honor','voler un composant chimique','Blue Paper Dog','2021-05-09 00:00:00','2022-05-12 00:00:00','7','2','6');
+insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+ values ('Rolling Whisper','assassiner un homme politique','Snail Jackson Olive','2022-10-01 00:00:00','2022-011-02 00:00:00','1','1','12');
+insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+ values ('Gray King','exfiltrer un dissident politique','Swan Vinous Fahrenheit','2021-01-01 00:00:00','2021-01-12 00:00:00','5','4','11');
+insert into mission (title,description,nameCode,startDate,endDate,skill_id,status_id,type_id)
+ values (' Last Lion','faire voter un texte de loi par un président étranger favorable à nos intérêts','Dalton Tuvalu Red','2022-07-01 00:00:00','2021-07-12 00:00:00','11','2','3'); 
+
+insert into skillagent (skill_id,agent_id) values (8,4);
+insert into skillagent (skill_id,agent_id) values (12,5);
+insert into skillagent (skill_id,agent_id) values (6,6);
+insert into skillagent (skill_id,agent_id) values (7,3);
+insert into skillagent (skill_id,agent_id) values (1,1);
+insert into skillagent (skill_id,agent_id) values (5,2);
+
+insert into missionagent (mission_id,agent_id) values (1,4);
+insert into missionagent (mission_id,agent_id) values (2,5);
+insert into missionagent (mission_id,agent_id) values (3,6);
+insert into missionagent (mission_id,agent_id) values (4,3);
+insert into missionagent (mission_id,agent_id) values (5,1);
+insert into missionagent (mission_id,agent_id) values (6,2);
