@@ -12,6 +12,19 @@
 
 <body>
     <div class="text-center">
+        <?php
+        session_start();
+        if ($_SESSION['username'] !== "") {
+            $user = $_SESSION['username'];
+            echo "Bonjour " . $user . " ravi de vous revoir";
+        }
+
+        ?>
+    </div>
+
+
+
+    <div class="text-center">
         <p>
 
             <?php
