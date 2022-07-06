@@ -1,4 +1,4 @@
-/* page connexion */
+/* page index */
 @font-face {
     font-family: "Orbiton";
     font-style: normal;
@@ -18,12 +18,11 @@ p{
     font-family: "Orbiton";
 }
 
-/* page login */
-.login{
-    background-image: url(./img/sukhoi-35.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
+
+
+button{
+    padding: 10px;
+    border: 1px solid black;
+    font-family: "Orbiton";
 }
 

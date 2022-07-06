@@ -11,16 +11,39 @@
 </head>
 
 <body>
-    <div class="text-center">
+    <div class="text-center border border-lime-600 bg-lime-300 text-lime-900">
         <?php
         session_start();
         if ($_SESSION['username'] !== "") {
             $user = $_SESSION['username'];
-            echo "Bonjour " . $user . " ravi de vous revoir";
+
+            echo "Bonjour " . $user . " ravi de vous voir !";
+            echo "<br>";
         }
 
         ?>
     </div>
+    <br>
+
+    <div class="grid justify-center">
+        <div class="justify-self-center">
+            <label for="missions-select">Choisir la mission:</label>
+            <select name="mission" id="mission">
+                <?php
+                try {
+                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                    foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+                        echo "<br>";
+                        echo '<option value="dog">' . $mission['title'] . '</option>';
+                    }
+                } catch (PDOException $e) {
+                    echo "<p>Erreur connexion à la base de données </p>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+
 
 
 
