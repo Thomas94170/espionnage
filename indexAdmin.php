@@ -27,28 +27,18 @@
 
     <div class="grid justify-center">
         <div class="justify-self-center">
-            <label for="missions-select">Choisir la mission:</label>
-            <select name="mission" id="mission">
-                <?php
-                try {
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM missions') as $mission) {
-                        echo "<br>";
-                        echo '<option value=""></option>';
-                        echo '<option value="' . $mission["title"] . '">' . $mission['title'] . '</option>';
-                    }
-                } catch (PDOException $e) {
-                    echo "<p>Erreur connexion à la base de données </p>";
-                }
-                // switch ($_POST['mission']) {
-                //     default:
-                //         header('Location:page.php');
-                // }
-                ?>
-            </select>
-            <a href="">Valider</a>
+            <div for="missions-select">Missions:</div>
         </div>
     </div>
+
+    <nav class="flex justify-center space-x-4">
+        <a href="agent.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Agent</a>
+        <a href="cibles.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Cible</a>
+        <a href="contact.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Contact</a>
+        <a href="planque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Planques</a>
+        <a href="competences.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Competences</a>
+        <a href="date.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Date</a>
+    </nav>
 
 
 
@@ -74,8 +64,6 @@
                     echo "Date de début: " . $mission['startDate'];
                     echo "<br>";
                     echo "Date de fin: " . $mission['endDate'] . '<br>';
-                    echo $mission['skill_id'] . ' ' . $mission['status_id'] . ' ' . $mission['type_id'];
-                    echo "<br>";
                 }
             } catch (PDOException $e) {
                 echo "<p>Erreur connexion à la base de données </p>";
