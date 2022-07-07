@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "Orbiton";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./fonts/Orbitron/Orbitron-VariableFont_wght.ttf) format("woff2");
+  }
+
+  body{
+      font-family: "Orbiton";
+  }
+
+
+button{
+    margin : 10px;
+    padding: 5px;
+}

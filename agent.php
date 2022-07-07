@@ -12,6 +12,10 @@
 
 <body>
 
+    <?php
+    require_once('menu.php');
+    ?>
+
     <div class="grid grid-rows-1 grid-flow-col gap-2">
 
         <div class="">
@@ -71,7 +75,7 @@
                             echo "<img src='https://img.icons8.com/color/48/000000/poland.png'/>";
                             break;
                         case 12:
-                            echo "<img src='https://img.icons8.com/color/48/000000/malaisia.png'/>";
+                            echo "<img src='https://img.icons8.com/color/48/000000/malaysia.png'/>";
                             break;
                         case 13:
                             echo "<img src='https://img.icons8.com/color/48/000000/south-korea.png'/>";
