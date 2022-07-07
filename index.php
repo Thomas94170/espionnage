@@ -6,41 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleIndex.css">
     <title>Evaluation KGB</title>
 </head>
 
 <body>
-    <div class="text-center border border-lime-600 bg-lime-300 text-lime-900">
-        <?php
-        session_start();
-        if ($_SESSION['username'] !== "") {
-            $user = $_SESSION['username'];
 
-            echo "Bonjour " . $user . " ravi de vous voir !";
-            echo "<br>";
-        }
-
-        ?>
-    </div>
     <br>
 
     <div class="grid justify-center">
         <div class="justify-self-center">
-            <label for="missions-select">Choisir la mission:</label>
-            <select name="mission" id="mission">
-                <?php
-                try {
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM missions') as $mission) {
-                        echo "<br>";
-                        echo '<option value="dog">' . $mission['title'] . '</option>';
-                    }
-                } catch (PDOException $e) {
-                    echo "<p>Erreur connexion à la base de données </p>";
-                }
-                ?>
-            </select>
+
+            <a class="bg-sky-600 hover:bg-sky-700 rounded-md" href="login.php">Login</a>
         </div>
     </div>
 
@@ -56,7 +33,6 @@
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($pdo->query('SELECT * FROM missions') as $mission) {
                     echo "<br>";
-                    // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
                     echo "Mission: " . $mission['title'];
                     echo '<br>';
                     echo "Description: " . $mission['description'];
@@ -64,11 +40,6 @@
                     echo "Nom de code: " . $mission['nameCode'];
                     echo "<br>";
                     echo "Lieu: " . $mission['country'];
-                    echo "<br>";
-                    echo "Date de début: " . $mission['startDate'];
-                    echo "<br>";
-                    echo "Date de fin: " . $mission['endDate'] . '<br>';
-                    echo $mission['skill_id'] . ' ' . $mission['status_id'] . ' ' . $mission['type_id'];
                     echo "<br>";
                 }
             } catch (PDOException $e) {

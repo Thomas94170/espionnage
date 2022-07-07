@@ -21,7 +21,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $count = $reponse['count(*)'];
         if ($count != 0) {
             $_SESSION['username'] = $username;
-            header('Location: index.php');
+            header('Location: indexAdmin.php');
         } else {
             header('Location : login.php?erreur=1');
         }

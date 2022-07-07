@@ -1,4 +1,3 @@
-/* page indexAdmin */
 @font-face {
     font-family: "Orbiton";
     font-style: normal;
@@ -8,21 +7,20 @@
   }
 
 body{
-    background-image: url(./img/sukhoi-35.jpg);
+    background-image: url(./img/su57.jpg);
     background-size: cover;
     background-position: center;
     
 }
 
-p{
+a{
     font-family: "Orbiton";
+    border: 1px solid black;
+    padding: 5px;
 }
 
-
-
-button{
-    padding: 10px;
-    border: 1px solid black;
+p{
     font-family: "Orbiton";
+    color: white;
 }
 

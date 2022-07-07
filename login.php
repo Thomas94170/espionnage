@@ -28,7 +28,7 @@
                 <input type="password" placeholder="Password" name="password" required>
                 <br>
                 <br>
-                <input class="border border-black rounded-md bg-lime-500 btn" type="submit" id="submit" value="Login">
+                <input class="border border-black rounded-md bg-lime-500 hover:bg-lime-700 btn" type="submit" id="submit" value="Login">
                 <br><br>
                 <?php
                 if (isset($_POST['erreur'])) {
