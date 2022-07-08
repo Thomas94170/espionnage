@@ -15,7 +15,14 @@
     require_once('menu.php');
     ?>
 
-    <div class="grid grid-rows-1 grid-flow-col gap-2">
+    <div class="">
+        <br>
+        <div class="grid justify-items-stretch">
+            <div class="justify-self-center">
+                <a href="index.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 "><i class="fa-solid fa-plus"></i>Ajouter Agent</a>
+            </div>
+        </div>
+        <br>
 
         <div class="">
 
@@ -25,7 +32,7 @@
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($pdo->query('SELECT * FROM targets') as $target) {
-                    echo "<div class='border border-black'>";
+                    echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
                     echo "Nom: " . $target['name'];

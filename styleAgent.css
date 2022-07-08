@@ -8,10 +8,17 @@
 
   body{
       font-family: "Orbiton";
+      
   }
 
 
 button{
     margin : 10px;
     padding: 5px;
+}
+
+.cell{
+    border-bottom: 1px solid  rgba(255,255,255,.1);
+    color: white;
+    background-color: black;
 }

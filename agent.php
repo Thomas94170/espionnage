@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styleAgent.css">
     <title>Document</title>
@@ -16,9 +17,16 @@
     require_once('menu.php');
     ?>
 
-    <div class="grid grid-rows-1 grid-flow-col gap-2">
+    <div class="">
+        <br>
+        <div class="grid justify-items-stretch">
+            <div class="justify-self-center">
+                <a href="gestionAgent.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600 "><i class="fa-solid fa-plus"></i>Ajouter Agent</a>
+            </div>
+        </div>
+        <br>
 
-        <div class="">
+        <div class="cell">
 
             <?php
 
@@ -26,7 +34,7 @@
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($pdo->query('SELECT * FROM agents') as $agent) {
-                    echo "<div class='border border-black'>";
+                    echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
                     echo "Nom: " . $agent['name'];
@@ -94,9 +102,12 @@
                             break;
                     }
                     echo "<br>";
-
+                    echo "<form action='#' method='POST'>";
                     echo "<button class='border border-black bg-lime-500 hover:bg-lime-700'>Modifier</button>";
+                    echo "</form>";
+                    echo "<form action='#' method='POST'>";
                     echo "<button class='border border-black bg-red-500 hover:bg-red-700'>Supprimer</button>";
+                    echo "</form>";
                     echo "</div>";
                 }
             } catch (PDOException $e) {
@@ -107,6 +118,22 @@
             ?>
         </div>
         </ul>
+
+        <?php
+
+        try {
+            $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "DELETE FROM agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
+            $pdo->exec($sql);
+            echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+        } catch (PDOException $e) {
+            echo $sql . '<br>' . $e->getMessage();
+        }
+
+        $pdo = null;
+
+        ?>
 </body>
 
 </html>
