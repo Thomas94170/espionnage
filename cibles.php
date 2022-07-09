@@ -19,7 +19,7 @@
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">
-                <a href="index.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 "><i class="fa-solid fa-plus"></i>Ajouter Agent</a>
+                <a href="gestionCible.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 "><i class="fa-solid fa-plus"></i>Ajouter Cible</a>
             </div>
         </div>
         <br>
