@@ -19,7 +19,7 @@
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">
-                <a href="gestionPlanque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 "><i class="fa-solid fa-plus"></i>Ajouter Planque</a>
+                <a href="gestionPlanque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600"><i class="fa-solid fa-plus"></i>Ajouter Planque</a>
             </div>
         </div>
         <br>
