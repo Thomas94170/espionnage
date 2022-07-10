@@ -17,12 +17,14 @@
     require_once('menu.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvelle Cible</h1>
+    <h1 class="text-center text-white">Nouveau Contact</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
+                <!-- <label for="id"> ID : </label>
+                <input type="text" name="id" id="id" required /> -->
                 <label for="name"> Nom : </label>
                 <input type="text" name="name" id="name" required />
                 <label for="firstname"> Prénom : </label>
@@ -34,8 +36,6 @@
                 <br>
                 <label for="nationality_id"> Nationalité : </label>
                 <input type="number" name="nationality_id" id="nationality_id" required />
-                <label for="mission_id"> Mission affectée : </label>
-                <input type="number" name="mission_id" id="mission_id" />
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
 
@@ -47,7 +47,7 @@
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO targets (`name`,`firstname`,`date_of_birth`,`codeName`,`nationality_id`,`mission_id`) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]', '$_POST[mission_id]')";
+        $sql = "INSERT INTO contacts (`name`,`firstname`,`date_of_birth`,`codeName`,`nationality_id`) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]')";
         $pdo->exec($sql);
         echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
