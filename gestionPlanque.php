@@ -17,25 +17,20 @@
     require_once('menu.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvel Agent</h1>
+    <h1 class="text-center text-white">Nouvelle Planque</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
-                <!-- <label for="id"> Id : </label>
-                <input type="number" name="id" id="id" required /> -->
-                <label for="name"> Nom : </label>
-                <input type="text" name="name" id="name" required />
-                <label for="firstname"> Prénom : </label>
-                <input type="text" name="firstname" id="firstname" required />
-                <label for="date"> Date de naissance </label>
-                <input type="date" name="date_of_birth" id="date_of_birth" required />
-                <label for="authentificationCode"> Code : </label>
-                <input type="text" name="authentificationCode" id="authentificationCode" required />
-                <br>
-                <label for="nationality_id"> Nationalité : </label>
-                <input type="number" name="nationality_id" id="nationality_id" required />
+                <!-- <label for="id"> ID : </label>
+                <input type="text" name="id" id="id" required /> -->
+                <label for="code"> CODE : </label>
+                <input type="number" name="code" id="code" required />
+                <label for="address"> Adresse : </label>
+                <input type="text" name="address" id="address" required />
+                <label for="type"> Type : </label>
+                <input type="text" name="type" id="type" required />
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
 
@@ -47,7 +42,7 @@
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
+        $sql = "INSERT INTO contacts (code,address,type) VALUES (" . $_POST['code'] . "," . $_POST['address'] . "," . $_POST['type'] . ")";
         $pdo->exec($sql);
         echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
