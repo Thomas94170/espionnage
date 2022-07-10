@@ -31,6 +31,10 @@
                 <input type="text" name="address" id="address" required />
                 <label for="type"> Type : </label>
                 <input type="text" name="type" id="type" required />
+                <label for="country_id"> Pays : </label>
+                <input type="number" name="country_id" id="country_id" required />
+                <label for="mission_id"> Mission : </label>
+                <input type="number" name="mission_id" id="mission_id" required />
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
 
@@ -42,7 +46,7 @@
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO contacts (code,address,type) VALUES (" . $_POST['code'] . "," . $_POST['address'] . "," . $_POST['type'] . ")";
+        $sql = "INSERT INTO stash (`code`,`address`,`type`,`country_id`,`mission_id`) VALUES ('$_POST[code]','$_POST[address]','$_POST[type]','$_POST[country_id]','$_POST[mission_id]')";
         $pdo->exec($sql);
         echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
