@@ -35,69 +35,16 @@
                     $spec = '';
                     echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                     echo "<br>";
-                    // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
                     echo "Spécialité: " . $skill['speciality'];
                     echo '<br>';
-
-
-                    switch ($skill = ['speciality']) {
-                        case 1:
-                            echo "<img src='https://img.icons8.com/ios/50/000000/center-diretion-2.png'/>";
-                            break;
-                        case 2:
-                            echo "<img src='https://img.icons8.com/ios/50/000000/poison-bottle.png'/>";
-                            break;
-                        case 3:
-                            echo "<img src='https://img.icons8.com/color/48/000000/france.png'/>";
-                            break;
-                        case 4:
-                            echo "<img src='https://img.icons8.com/color/48/000000/russian-federation.png'/>";
-                            break;
-                        case 5:
-                            echo "<img src='https://img.icons8.com/color/48/000000/china.png'/>";
-                            break;
-                        case 6:
-                            echo "<img src='https://img.icons8.com/color/48/000000/philippines.png'/>";
-                            break;
-                        case 7:
-                            echo "<img src='https://img.icons8.com/color/48/000000/usa.png'/>";
-                            break;
-                        case 8:
-                            echo "<img src='https://img.icons8.com/color/48/000000/brazil.png'/>";
-                            break;
-                        case 9:
-                            echo "<img src='https://img.icons8.com/color/48/000000/turkey.png'/>";
-                            break;
-                        case 10:
-                            echo "<img src='https://img.icons8.com/color/48/000000/indonesia.png'/>";
-                            break;
-                        case 11:
-                            echo "<img src='https://img.icons8.com/color/48/000000/poland.png'/>";
-                            break;
-                        case 12:
-                            echo "<img src='https://img.icons8.com/color/48/000000/malaysia.png'/>";
-                            break;
-                        case 13:
-                            echo "<img src='https://img.icons8.com/color/48/000000/south-korea.png'/>";
-                            break;
-                        case 14:
-                            echo "<img src='https://img.icons8.com/color/48/000000/germany.png'/>";
-                            break;
-                        case 15:
-                            echo "<img src='https://img.icons8.com/color/48/000000/austria.png'/>";
-                            break;
-                        case 16:
-                            echo "<img src='https://img.icons8.com/color/48/000000/great-britain.png'/>";
-                            break;
-                        case 17:
-                            echo "<img src='https://img.icons8.com/color/48/000000/syria.png'/>";
-                            break;
-                    }
                     echo "<br>";
-
-                    echo "<button class='border border-black bg-lime-500 hover:bg-lime-700'>Modifier</button>";
-                    echo "<button class='border border-black bg-red-500 hover:bg-red-700'>Supprimer</button>";
-                    echo "</div>";
+                    echo '<form action="#" method="POST">';
+                    echo '<button class="border border-black bg-lime-500 hover:bg-lime-700">Modifier</button>';
+                    echo '<button type="submit" value="' . $skill['speciality'] . '" name="delete" class="mt-2 p-2 rounded-lg bg-red-600" style="cursor: pointer;">';
+                    echo 'Delete entity';
+                    echo '</button>';
+                    echo '</form>';
+                    echo '</div>';
                 }
             } catch (PDOException $e) {
                 echo "<p>Erreur connexion à la base de données </p>";
@@ -107,6 +54,25 @@
             ?>
         </div>
         </ul>
+
+
+
+        <?php
+
+        try {
+            $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "DELETE FROM skill WHERE speciality = '$_POST[delete]'";
+            $pdo->exec($sql);
+        } catch (PDOException $e) {
+            echo $sql . '<br>' . $e->getMessage();
+        }
+
+        $pdo = null;
+
+        ?>
 </body>
+
+
 
 </html>

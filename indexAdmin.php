@@ -26,11 +26,7 @@
     </div>
     <br>
 
-    <div class="grid justify-center">
-        <div class="justify-self-center">
-            <div for="missions-select">Missions:</div>
-        </div>
-    </div>
+
 
     <?php
     require_once('menu.php')
@@ -79,8 +75,12 @@
                         }
                     }
                     foreach ($pdo->query("SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
-                        echo "Cible: " . $target['name'];
-                        echo "<br><br>";
+                        echo "Cible: " . $target['name'] . '<br>';
+                    }
+                    foreach ($pdo->query("SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
+                        foreach ($pdo->query("SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
+                            echo "Etat de la mission : " . $status['conditions'] . '<br>';
+                        }
                     }
                 }
             } catch (PDOException $e) {

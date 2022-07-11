@@ -105,8 +105,9 @@
                     echo "<form action='#' method='POST'>";
                     echo "<button class='border border-black bg-lime-500 hover:bg-lime-700'>Modifier</button>";
                     echo "</form>";
-                    echo "<form action='#' method='POST'>";
-                    echo "<button class='border border-black bg-red-500 hover:bg-red-700'>Supprimer</button>";
+                    echo "<form action='#' method='POST' id='suppr'>";
+                    echo "<button type='submit' class='border border-black bg-red-500 hover:bg-red-700' id='suppr'>Supprimer</button>";
+                    echo '<input type="checkbox" class=" checked:bg-blue-500" name="suppr[]" value="' . $agent['id'] . '"/> ' . $agent['id'] . '<br />';
                     echo "</form>";
                     echo "</div>";
                 }
@@ -119,19 +120,12 @@
         </div>
         </ul>
 
+
+
+
+        <!-- supprimer agent -->
+
         <?php
-
-        try {
-            $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "DELETE FROM agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
-            $pdo->exec($sql);
-            echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
-        } catch (PDOException $e) {
-            echo $sql . '<br>' . $e->getMessage();
-        }
-
-        $pdo = null;
 
         ?>
 </body>

@@ -2,3 +2,34 @@ Bousquet = $2y$10$Bxi4XWjTjZmIY8jQem/udOfaZnxtmKsS/lUK7zjgKRbMJvIGjPhby
 Llewellyn = $2y$10$FYxsCBbgy5TVoziVZS6T9uy2Ei5fmxd8/A0VIQXB8HepJK.dQgZlm
 Lorence = $2y$10$Bu/F0gAIH5nhBB43kbp/rOUBOw.yAPsxrJGSYxRCcD/0oHJTtloKO
 Davis = $2y$10$.vWevGMs61.WRkE5N29L0OGzfhH1tDtPsE1tcn.SsY1lcfH9zi46u
+
+// try {
+        //     $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+        //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //     $sql = "DELETE FROM agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
+        //     $pdo->exec($sql);
+        //     echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+        // } catch (PDOException $e) {
+        //     echo $sql . '<br>' . $e->getMessage();
+        // }
+
+        // $pdo = null;
+
+        // try {
+        //     $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+        //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //     if (isset($_POST['suppr'])) { //si le bouton submit est cliqué et que $_POST['suppr'] est reconnu
+            $Suppr = "";
+            foreach ($_POST['suppr'] as $ids) {
+                mysqli_query($mysqli, "DELETE FROM agents WHERE id='" . $ids . "'"); //pensez à sécuriser la variable $ids pour éviter une éventuelle injection SQL
+                $Suppr .= "$ids "; //on les sauvegardes dans la variable $Suppr pour afficher ce qui à été supprimé
+            }
+            
+        }
+        //     $pdo->exec($sql);
+        //     echo "Agent supprimés: $Suppr";
+        // } catch (PDOException $e) {
+        //     echo $sql . '<br>' . $e->getMessage();
+        // }
+
+        // $pdo = null;
