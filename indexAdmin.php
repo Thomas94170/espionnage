@@ -68,6 +68,20 @@
                     echo "Date de début: " . $mission['startDate'];
                     echo "<br>";
                     echo "Date de fin: " . $mission['endDate'] . '<br>';
+                    foreach ($pdo->query("SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
+                        foreach ($pdo->query("SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
+                            echo "Agent traitant: " . $agent['name'] . '<br>';
+                        }
+                    }
+                    foreach ($pdo->query("SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
+                        foreach ($pdo->query("SELECT * FROM contacts WHERE id = $missioncontact[contact_id]") as $contact) {
+                            echo "Contact : " . $contact['name'] . '<br>';
+                        }
+                    }
+                    foreach ($pdo->query("SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
+                        echo "Cible: " . $target['name'];
+                        echo "<br><br>";
+                    }
                 }
             } catch (PDOException $e) {
                 echo "<p>Erreur connexion à la base de données </p>";

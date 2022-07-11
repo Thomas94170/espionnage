@@ -24,7 +24,7 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="speciality"> Compétence : </label>
-                <input type="text" name="speciality" id="speciality" required />
+                <input type="text" name="speciality" id="speciality" required>
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
 
