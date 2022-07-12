@@ -33,15 +33,19 @@
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($pdo->query('SELECT * FROM skill') as $skill) {
                     $spec = '';
-                    echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
+                    echo "<div class=' flex justify-between border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                     echo "<br>";
                     echo "Spécialité: " . $skill['speciality'];
                     echo '<br>';
                     echo "<br>";
+                    echo '<form action="updateSkill.php" method="GET">';
+                    echo '<button type="submit" value="' . $skill['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
+                    echo 'Mettre à jour';
+                    echo '</button>';
+                    echo '</form>';
                     echo '<form action="#" method="POST">';
-                    echo '<button class="border border-black bg-lime-500 hover:bg-lime-700">Modifier</button>';
-                    echo '<button type="submit" value="' . $skill['speciality'] . '" name="delete" class="mt-2 p-2 rounded-lg bg-red-600" style="cursor: pointer;">';
-                    echo 'Delete entity';
+                    echo '<button type="submit" value="' . $skill['speciality'] . '" name="delete" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
+                    echo 'Supprimer';
                     echo '</button>';
                     echo '</form>';
                     echo '</div>';
@@ -56,7 +60,7 @@
         </ul>
 
 
-
+        <!-- supprimer  -->
         <?php
 
         try {
@@ -71,6 +75,11 @@
         $pdo = null;
 
         ?>
+
+        <!-- mettre à jour -->
+
+
+
 </body>
 
 

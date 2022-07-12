@@ -107,7 +107,6 @@
                     echo "</form>";
                     echo "<form action='#' method='POST' id='suppr'>";
                     echo "<button type='submit' class='border border-black bg-red-500 hover:bg-red-700' id='suppr'>Supprimer</button>";
-                    echo '<input type="checkbox" class=" checked:bg-blue-500" name="suppr[]" value="' . $agent['id'] . '"/> ' . $agent['id'] . '<br />';
                     echo "</form>";
                     echo "</div>";
                 }
