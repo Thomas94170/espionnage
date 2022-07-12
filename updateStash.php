@@ -35,8 +35,14 @@
         <br>
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
-                <label for="maj"> Compétence : </label>
-                <input type="text" name="maj" id="maj" required>
+                <label for="majCode"> Code : </label>
+                <input type="text" name="majCode" id="majCode" required>
+                <label for="majAddress"> Address : </label>
+                <input type="text" name="majAddress" id="majAddress" required>
+                <label for="majType"> Type : </label>
+                <input type="text" name="majType" id="majType" required>
+                <label for="majCountry"> Country : </label>
+                <input type="number" name="majCountry" id="majCountry" required>
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
@@ -45,7 +51,7 @@
         <br>
         <br>
         <div class="justify-self-center">
-            <a href="competences.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600">Retour</a>
+            <a href="planque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600">Retour</a>
         </div>
 
 
@@ -58,7 +64,7 @@
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE skill SET speciality = '$_POST[maj]' WHERE id = $_GET[update]";
+        $sql = "UPDATE stash SET code ='$_POST[majCode]',address = '$_POST[majAddress]',type = '$_POST[majType]',country_id = '$_POST[majCountry]'  WHERE id = '$_GET[update]'";
         $pdo->exec($sql);
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
