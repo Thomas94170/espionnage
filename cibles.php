@@ -100,15 +100,36 @@
                             break;
                     }
                     echo "<br>";
-
-                    echo "<button class='border border-black bg-lime-500 hover:bg-lime-700'>Modifier</button>";
-                    echo "<button class='border border-black bg-red-500 hover:bg-red-700'>Supprimer</button>";
+                    echo '<form action="updateCible.php" method="GET">';
+                    echo '<button type="submit" value="' . $target['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
+                    echo 'Mettre à jour';
+                    echo '</button>';
+                    echo '</form>';
+                    echo '<form action="#" method="POST">';
+                    echo '<button type="submit" value="' . $target['id'] . '" name="deleteCible" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
+                    echo 'Supprimer';
+                    echo '</button>';
+                    echo '</form>';
                     echo "</div>";
                 }
             } catch (PDOException $e) {
                 echo "<p>Erreur connexion à la base de données </p>";
             }
+            ?>
 
+            <!-- supprimer les cibles -->
+            <?php
+
+            try {
+                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "DELETE FROM targets WHERE id = '$_POST[deleteCible]'";
+                $pdo->exec($sql);
+            } catch (PDOException $e) {
+                echo $sql . '<br>' . $e->getMessage();
+            }
+
+            $pdo = null;
 
             ?>
         </div>
