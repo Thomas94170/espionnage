@@ -44,7 +44,22 @@
                 <label for="majCode"> Code : </label>
                 <input type="text" name="majCode" id="majCode" required>
                 <label for="majNat"> Nationality : </label>
-                <input type="number" name="majNat" id="majNat" required>
+                <select name="majNat" id="">
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM nationality') as $nationality) {
+
+
+                            echo '<option value="' . $nationality['id'] . '">' . $nationality['name'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
+                <!-- <label for="majNat"> Nationality : </label> -->
+                <!-- <input type="number" name="majNat" id="majNat" required> -->
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>

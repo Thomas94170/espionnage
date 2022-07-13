@@ -41,12 +41,41 @@
                 <input type="text" name="majFirstname" id="majFirstname" required>
                 <label for="majDob"> Date of birth : </label>
                 <input type="date" name="majDob" id="majDob" required>
-                <label for="majCode"> Code : </label>
-                <input type="text" name="majCode" id="majCode" required>
                 <label for="majNat"> Nationality : </label>
-                <input type="number" name="majNat" id="majNat" required>
+                <select name="majNat" id="">
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM nationality') as $nationality) {
+
+
+                            echo '<option value="' . $nationality['id'] . '">' . $nationality['name'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
                 <label for="majMis"> Mission : </label>
-                <input type="number" name="majMis" id="majMis" required>
+                <select name="majMis" id="">
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+
+
+                            echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
+                <!-- <input type="text" name="majCode" id="majCode" required> -->
+                <!-- <label for="majNat"> Nationality : </label> -->
+                <!-- <input type="number" name="majNat" id="majNat" required> -->
+                <!-- <label for="majMis"> Mission : </label> -->
+                <!-- <input type="number" name="majMis" id="majMis" required> -->
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>

@@ -42,7 +42,37 @@
                 <label for="majType"> Type : </label>
                 <input type="text" name="majType" id="majType" required>
                 <label for="majCountry"> Country : </label>
-                <input type="number" name="majCountry" id="majCountry" required>
+                <select name="majCountry" id="">
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM country') as $country) {
+
+
+                            echo '<option value="' . $country['id'] . '">' . $country['name'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
+                <label for="majMis"> Mission : </label>
+                <select name="majMis" id="">
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+
+
+                            echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
+                <!-- <label for="majCountry"> Country : </label> -->
+                <!-- <input type="number" name="majCountry" id="majCountry" required> -->
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
@@ -64,7 +94,7 @@
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE stash SET code ='$_POST[majCode]',address = '$_POST[majAddress]',type = '$_POST[majType]',country_id = '$_POST[majCountry]'  WHERE id = '$_GET[update]'";
+        $sql = "UPDATE stash SET code ='$_POST[majCode]',address = '$_POST[majAddress]',type = '$_POST[majType]',country_id = '$_POST[majCountry]',mission_id = '$_POST[majMis]'  WHERE id = '$_GET[update]'";
         $pdo->exec($sql);
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();

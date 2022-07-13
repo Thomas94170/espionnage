@@ -31,10 +31,40 @@
                 <input type="text" name="address" id="address" required />
                 <label for="type"> Type : </label>
                 <input type="text" name="type" id="type" required />
-                <label for="country_id"> Pays : </label>
-                <input type="number" name="country_id" id="country_id" required />
+                <label for="country_id"> Country : </label>
+                <select name="country_id" id="">
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM country') as $country) {
+
+
+                            echo '<option value="' . $country['id'] . '">' . $country['name'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
                 <label for="mission_id"> Mission : </label>
-                <input type="number" name="mission_id" id="mission_id" required />
+                <select name="mission_id" id="">
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+
+
+                            echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
+                <!-- <label for="country_id"> Pays : </label> -->
+                <!-- <input type="number" name="country_id" id="country_id" required /> -->
+                <!-- <label for="mission_id"> Mission : </label> -->
+                <!-- <input type="number" name="mission_id" id="mission_id" required /> -->
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
 

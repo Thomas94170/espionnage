@@ -34,8 +34,20 @@
                 <label for="authentificationCode"> Code : </label>
                 <input type="text" name="authentificationCode" id="authentificationCode" required />
                 <br>
-                <label for="nationality_id"> Nationalité : </label>
-                <input type="number" name="nationality_id" id="nationality_id" required />
+                <?php
+                try {
+                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                    foreach ($pdo->query('SELECT * FROM nationality') as $nationality) {
+                        echo '<input type="radio" class="checked:bg-blue-500" name="nationality_id" value= "' . $nationality['id'] . '" />';
+                        echo $nationality['name'];
+                        echo "<br>";
+                    }
+                } catch (PDOException $e) {
+                    echo "<p>Erreur connexion à la base de données </p>";
+                }
+                ?>
+                <!-- <label for="nationality_id"> Nationalité : </label> -->
+                <!-- <input type="number" name="nationality_id" id="nationality_id" required /> -->
                 <br><br>
                 <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
 
