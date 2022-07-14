@@ -38,7 +38,6 @@
                         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                         foreach ($pdo->query('SELECT * FROM country') as $country) {
 
-
                             echo '<option value="' . $country['id'] . '">' . $country['name'] . '</option>';
                         }
                     } catch (PDOException $e) {
@@ -52,6 +51,7 @@
                     try {
                         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                         foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+
 
 
                             echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
@@ -77,8 +77,18 @@
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO stash (`code`,`address`,`type`,`country_id`,`mission_id`) VALUES ('$_POST[code]','$_POST[address]','$_POST[type]','$_POST[country_id]','$_POST[mission_id]')";
-        $pdo->exec($sql);
-        echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+        foreach ($pdo->query("SELECT name FROM country WHERE id = '$_POST[country_id]'") as $country) {
+            foreach ($pdo->query("SELECT country FROM missions WHERE id = '$_POST[mission_id]'") as $mission) {
+                if ($country['name'] != $mission['country']) {
+                    echo '<p class= "text-white text-center">Ajout Impossible, la planque doit être dans le pays de la mission';
+                } else {
+                    $pdo->exec($sql);
+                    echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+                }
+            }
+        }
+        // $pdo->exec($sql);
+        // echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
