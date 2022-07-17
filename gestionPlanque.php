@@ -14,7 +14,8 @@
 <body class="bg-gradient-to-r from-black">
 
     <?php
-    require_once('menu.php');
+    // require_once('menu.php');
+    require_once('sidebar.php');
     ?>
     <br>
     <h1 class="text-center text-white">Nouvelle Planque</h1>
@@ -96,7 +97,7 @@
     $pdo = null;
 
     ?>
-
+    <!-- filtre pour faire en sorte que la planque soit dans le mm pays que la mission -->
 
 
 </body>

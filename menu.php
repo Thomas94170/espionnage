@@ -21,5 +21,5 @@
     <a href="contact.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Contact</a>
     <a href="planque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Planques</a>
     <a href="competences.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Competences</a>
-    <a href="index.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-yellow-400 hover:text-slate-900"><i class="fa-solid fa-power-off"></i>Déconnexion</a>
+    <a href="logout.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-yellow-400 hover:text-slate-900"><i class="fa-solid fa-power-off"></i>Déconnexion</a>
 </nav>
