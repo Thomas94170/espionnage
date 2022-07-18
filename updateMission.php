@@ -1,49 +1,62 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styleAgent.css">
     <title>Document</title>
 </head>
 
-<body class="bg-gradient-to-r from-black">
+<body>
+    <?php
+
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM contacts";
+        $pdo->exec($sql);
+    } catch (PDOException $e) {
+        echo $sql . '<br>' . $e->getMessage();
+    }
+
+    $pdo = null;
+    ?>
 
     <?php
     require_once('menu.php');
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvelle Mission</h1>
+    <h1 class="text-center text-white">Mettre à jour</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
-                <!-- <label for="id"> Id : </label>
-                <input type="number" name="id" id="id" required /> -->
-                <label for="title"> Title : </label>
-                <input type="text" name="title" id="title" required />
-                <label for="description"> Description : </label>
-                <input type="text" name="description" id="description" required />
-                <label for="nameCode"> Code :</label>
-                <input type="text" name="nameCode" id="nameCode" required />
-                <br>
-                <label for="country"> Pays : </label>
-                <select name="country" id="country">
-                    <br>
+                <label for="majTitle"> Title : </label>
+                <input type="text" name="majTitle" id="majTitle" required>
+                <label for="majDescription"> Description : </label>
+                <input type="text" name="majDescription" id="majDescription" required>
+                <label for="majCode"> Code : </label>
+                <input type="text" name="majCode" id="majCode" required>
+                <label for="majCountry"> Country : </label>
+                <select name="majCountry" id="majCountry">
                     <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM country') as $country) {
+                            // echo '<input type="radio" class="checked:bg-blue-500" name="majNat" value= "' . $nationality['id'] . '" />';
 
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM country') as $country) {
-                        echo '<option value="' . $country['name'] . '">' . $country['name'] . '</option>';
+                            echo '<option value="' . $country['name'] . '">' . $country['name'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
                     }
-
                     ?>
+                </select>
                 </select>
                 <label for="startDate"> Début : </label>
                 <input type="date" name="startDate" id="startDate" required />
@@ -108,29 +121,34 @@
                     foreach ($pdo->query('SELECT * FROM status') as $status) {
                         echo '<option value="' . $status['id'] . '">' . $status['conditions'] . '</option>';
                     }
-
                     ?>
-                </select>
-                <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                    <!-- <label for="majNat"> Nationality : </label> -->
+                    <!-- <input type="number" name="majNat" id="majNat" required> -->
+                    <br><br>
+                    <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+            </form>
 
         </div>
+        <br>
+        <br>
+        <div class="justify-self-center">
+            <a href="mission.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600">Retour</a>
+        </div>
+
 
     </div>
+
+    <!-- update-->
+
     <?php
 
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO missions (title, description, nameCode, country, startDate, endDate, skill_id, status_id, type_id) VALUES ('$_POST[title]', '$_POST[description]', '$_POST[nameCode]', '$_POST[country]','$_POST[startDate]','$_POST[endDate]','$_POST[skill]','$_POST[status]','$_POST[type]')";
+        $sql = "UPDATE missions SET title ='$_POST[majTitle]',description = '$_POST[majDescription]',nameCode = '$_POST[majCode]',country = '$_POST[majCountry]',startDate = '$_POST[startDate]',endDate = '$_POST[endDate]' WHERE id = '$_GET[update]'";
+        $sql1 = "UPDATE agents SET name ='$_POST[agent]' WHERE id = '$_GET[update]'";
+        $sq2 = "UPDATE contacts SET name ='$_POST[contact]' WHERE id = '$_GET[update]'";
         $pdo->exec($sql);
-        foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[title]' ") as $mission) {
-            $pdo->exec("INSERT INTO missionagent (mission_id, agent_id) VALUES ('$mission[id]', '$_POST[agent]')");
-        }
-        foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[title]' ") as $mission) {
-            $pdo->exec("INSERT INTO missioncontact (mission_id, contact_id) VALUES ('$mission[id]', '$_POST[contact]')");
-        }
-        echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
@@ -138,9 +156,6 @@
     $pdo = null;
 
     ?>
-
-
-
 </body>
 
 </html>

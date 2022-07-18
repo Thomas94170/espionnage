@@ -70,13 +70,13 @@
 
 
                     echo "<br>";
-                    echo '<form action="updateAgent.php" method="GET">';
-                    echo '<button type="submit" value="' . $agent['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
+                    echo '<form action="updateMission.php" method="GET">';
+                    echo '<button type="submit" value="' . $mission['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
                     echo 'Mettre à jour';
                     echo '</button>';
                     echo '</form>';
                     echo '<form action="#" method="POST">';
-                    echo '<button type="submit" value="' . $agent['id'] . '" name="deleteAgent" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
+                    echo '<button type="submit" value="' . $mission['id'] . '" name="deleteMission" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
                     echo 'Supprimer';
                     echo '</button>';
                     echo '</form>';
@@ -87,13 +87,15 @@
             }
             ?>
 
-            <!-- supprimer les agents -->
+            <!-- supprimer les missions -->
             <?php
 
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "DELETE FROM agents WHERE id = '$_POST[deleteAgent]'";
+                $sql1 = "DELETE FROM missionagent WHERE mission_id, agent_id = '$_POST[deleteMission]'";
+                $sql2 = "DELETE FROM missioncontact WHERE mission_id, contact_id = '$_POST[deleteMission]'";
+                $sql = "DELETE FROM missions WHERE id = '$_POST[deleteMission]'";
                 $pdo->exec($sql);
             } catch (PDOException $e) {
                 echo $sql . '<br>' . $e->getMessage();

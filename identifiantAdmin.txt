@@ -33,3 +33,6 @@ Davis = $2y$10$.vWevGMs61.WRkE5N29L0OGzfhH1tDtPsE1tcn.SsY1lcfH9zi46u
         // }
 
         // $pdo = null;
+
+
+'SELECT * FROM country'
