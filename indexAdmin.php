@@ -10,7 +10,7 @@
     <title>Evaluation KGB</title>
 </head>
 
-<body>
+<body class="bg-black">
     <div class="text-center border border-lime-600 bg-lime-300 text-lime-900">
         <?php
         session_start();
@@ -26,18 +26,26 @@
     </div>
     <br>
 
-
+    <nav class="flex justify-center space-x-4">
+        <a href="mission.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"><i class="fas fa-qrcode"></i>Mission</a>
+        <a href="agent.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"><i class="fa-solid fa-person-rifle"></i>Agent</a>
+        <a href="cibles.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"><i class="fa-solid fa-arrows-down-to-people"></i>Cible</a>
+        <a href="contact.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"><i class="fa-solid fa-person-military-to-person"></i>Contact</a>
+        <a href="planque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"><i class="fa-solid fa-house-user"></i>Planques</a>
+        <a href="competences.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"><i class="fas fa-brain"></i>Competences</a>
+        <a href="logout.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-yellow-400 hover:text-slate-900"><i class="fa-solid fa-power-off"></i>Déconnexion</a>
+    </nav>
 
 
 
     <?php
-    require_once('menu.php')
+    // require_once('menu.php')
     // require_once('sidebar.php')
 
     ?>
 
 
-    <div class="text-center">
+    <div class="text-center text-white">
         <p>
 
             <?php
@@ -45,6 +53,7 @@
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
                     echo "Mission: " . $mission['title'];

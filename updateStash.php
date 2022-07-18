@@ -13,16 +13,16 @@
 <body>
     <?php
 
-    try {
-        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM skill";
-        $pdo->exec($sql);
-    } catch (PDOException $e) {
-        echo $sql . '<br>' . $e->getMessage();
-    }
+    // try {
+    //     $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+    //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     $sql = "SELECT * FROM skill";
+    //     $pdo->exec($sql);
+    // } catch (PDOException $e) {
+    //     echo $sql . '<br>' . $e->getMessage();
+    // }
 
-    $pdo = null;
+    //$pdo = null;
     ?>
 
     <?php

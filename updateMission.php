@@ -148,6 +148,7 @@
         $sql = "UPDATE missions SET title ='$_POST[majTitle]',description = '$_POST[majDescription]',nameCode = '$_POST[majCode]',country = '$_POST[majCountry]',startDate = '$_POST[startDate]',endDate = '$_POST[endDate]' WHERE id = '$_GET[update]'";
         $sql1 = "UPDATE agents SET name ='$_POST[agent]' WHERE id = '$_GET[update]'";
         $sq2 = "UPDATE contacts SET name ='$_POST[contact]' WHERE id = '$_GET[update]'";
+        $sq3 = "UPDATE skill SET speciality ='$_POST[skill]' WHERE id = '$_GET[update]'";
         $pdo->exec($sql);
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();

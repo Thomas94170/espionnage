@@ -34,7 +34,7 @@
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($pdo->query('SELECT * FROM skill') as $skill) {
                     $spec = '';
-                    echo "<div class=' flex justify-between border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
+                    echo "<div class=' flex justify-between border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400 text-white'>";
                     echo "<br>";
                     echo "Spécialité: " . $skill['speciality'];
                     echo '<br>';
