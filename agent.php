@@ -14,11 +14,11 @@
 <body>
 
     <?php
-    // require_once('menu.php');
-    require_once('sidebar.php');
+    require_once('menu.php');
+    // require_once('sidebar.php');
     ?>
 
-    <div class="">
+    <div class="bg-black">
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">

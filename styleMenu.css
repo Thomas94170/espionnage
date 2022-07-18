@@ -90,10 +90,3 @@ label #cancel{
 } */
 /* si je veux que le background se décale en mm temps que l'apparition du sidebar */
 
-section{
-    background: url(./coding.jpg) no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    transition: all.5s;
-}

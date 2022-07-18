@@ -26,8 +26,8 @@
     ?>
 
     <?php
-    // require_once('menu.php')
-    require_once('sidebar.php');
+    require_once('menu.php');
+    // require_once('sidebar.php');
     ?>
     <br>
     <h1 class="text-center text-white">Mettre à jour</h1>
