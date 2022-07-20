@@ -8,7 +8,7 @@
 
 body{
     background-image: url(./img/specialforce.jpg);
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     
 }
