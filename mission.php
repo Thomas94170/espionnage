@@ -93,9 +93,11 @@
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql1 = "DELETE FROM missionagent WHERE mission_id, agent_id = '$_POST[deleteMission]'";
-                $sql2 = "DELETE FROM missioncontact WHERE mission_id, contact_id = '$_POST[deleteMission]'";
+                $sql1 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
+                $sql2 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
                 $sql = "DELETE FROM missions WHERE id = '$_POST[deleteMission]'";
+                $pdo->exec($sql1);
+                $pdo->exec($sql2);
                 $pdo->exec($sql);
             } catch (PDOException $e) {
                 echo $sql . '<br>' . $e->getMessage();

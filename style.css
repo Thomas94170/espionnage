@@ -8,14 +8,16 @@
   }
 
 body{
-    
+    /* width: 100vw;
     background-image: url(./img/sukhoi-35.jpg);
     background-size: cover;
     background-position: center;
-    
+     */
+     
 }
 
-p{
+.mission,
+.mess{
     font-family: "Orbiton";
 }
 

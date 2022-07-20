@@ -7,7 +7,7 @@
   }
 
 body{
-    background-image: url(./img/su57.jpg);
+    background-image: url(./img/specialforce.jpg);
     background-size: cover;
     background-position: center;
     
@@ -21,6 +21,6 @@ a{
 
 p{
     font-family: "Orbiton";
-    color: white;
+    
 }
 

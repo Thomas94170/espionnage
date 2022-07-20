@@ -123,14 +123,30 @@
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO missions (title, description, nameCode, country, startDate, endDate, skill_id, status_id, type_id) VALUES ('$_POST[title]', '$_POST[description]', '$_POST[nameCode]', '$_POST[country]','$_POST[startDate]','$_POST[endDate]','$_POST[skill]','$_POST[status]','$_POST[type]')";
-        $pdo->exec($sql);
+
+        // on boucle pour que le pays soit identique à la nationalité du contact en comparant l id du pays à la nationality_id du contact
+        foreach ($pdo->query("SELECT * FROM country where name = '$_POST[country]'") as $country) {
+            foreach ($pdo->query("SELECT * FROM contacts where id = '$_POST[contact]'") as $contact) {
+                if ($country['id'] != $contact['nationality_id']) {
+                    echo "Erreur : le contact doit être du pays de la mission";
+                } else {
+                    // on boucle afin de selectionner la competence de l agent afin qu'elle soit identique à la compétence demandé dans la mission
+                    foreach ($pdo->query("SELECT * FROM skillagent where agent_id = '$_POST[agent]'") as $skillagent) {
+                        if ($skillagent['skill_id'] != $_POST['skill']) {
+                            echo "Erreur : l'agent doit avoir la compétence requise";
+                        } else {
+                            $pdo->exec($sql);
+                        }
+                    }
+                }
+            }
+        }
         foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[title]' ") as $mission) {
             $pdo->exec("INSERT INTO missionagent (mission_id, agent_id) VALUES ('$mission[id]', '$_POST[agent]')");
         }
         foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[title]' ") as $mission) {
             $pdo->exec("INSERT INTO missioncontact (mission_id, contact_id) VALUES ('$mission[id]', '$_POST[contact]')");
         }
-        echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }

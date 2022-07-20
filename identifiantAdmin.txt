@@ -43,3 +43,21 @@ body{
     background-position: center;
     
 }
+
+
+foreach ($pdo->query("SELECT * FROM contact where id = '$_POST[contact]'") as $contact){
+if($country['id']!=$contact['nationality_id']){
+                    echo "Erreur : le contact doit être du pays de la mission";
+                }else{
+                    foreach ($pdo->query("SELECT * FROM skillagent where agent_id = '$_POST[agent]'") as $skillagent){
+                        if($skillagent['skill_id']!=$_POST['skill']){
+                            echo "Erreur : l'agent doit avoir la compétence requise";
+                        }else{
+                            $pdo->exec($sql);
+                            echo "Ajouté à la base de données";
+                        }
+                }
+            }
+}
+                
+
