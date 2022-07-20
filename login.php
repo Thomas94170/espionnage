@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<?php
+session_start();
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,9 +32,15 @@
                 <input type="password" placeholder="Password" name="password" required>
                 <br>
                 <br>
-                <input class="border border-black rounded-md bg-lime-500 hover:bg-lime-700 btn" type="submit" id="submit" value="Login">
+                <?php
+                // session_start();
+                // echo '<input class="border border-black rounded-md bg-lime-500 hover:bg-lime-700 btn" type="submit" id="submit" value="Login">';
+                ?>
                 <br><br>
                 <?php
+
+                echo '<input class="border border-black rounded-md bg-lime-500 hover:bg-lime-700 btn" type="submit" id="submit" value="Login">';
+
                 if (isset($_POST['erreur'])) {
                     $error = $_POST['erreur'];
                     if ($error == 1 || $error == 2);

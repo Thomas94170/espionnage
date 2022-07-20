@@ -44,7 +44,7 @@
                             echo '<option value="' . $nationality['id'] . '">' . $nationality['name'] . '</option>';
                         }
                     } catch (PDOException $e) {
-                        echo "<p>Erreur connexion à la base de données </p>";
+                        echo "<p class='text-white'>Erreur connexion à la base de données </p>";
                     }
                     ?>
                 </select>
@@ -59,7 +59,7 @@
                             echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
                         }
                     } catch (PDOException $e) {
-                        echo "<p>Erreur connexion à la base de données </p>";
+                        echo "<p class='text-white'>Erreur connexion à la base de données </p>";
                     }
                     ?>
                 </select>

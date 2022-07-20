@@ -14,11 +14,13 @@
     <div class="text-center border border-lime-600 bg-lime-300 text-lime-900 mess">
         <?php
         session_start();
-        if ($_SESSION['username'] !== "") {
+        if (isset($_SESSION['username'])) {
             $user = $_SESSION['username'];
 
             echo "Bonjour " . $user . " ravi de vous voir !";
             echo "<br>";
+        } else {
+            header('Location:index.php');
         }
 
 
