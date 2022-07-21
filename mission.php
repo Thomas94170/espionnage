@@ -18,7 +18,7 @@
     // require_once('sidebar.php');
     ?>
 
-    <div class="bg-black">
+    <div class="bg-black ">
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">
@@ -26,97 +26,131 @@
             </div>
         </div>
         <br>
+        <div class="grid grid-rows-3 grid-flow-col gap-2">
+            <div class="row-span-3">
 
-        <div class="cell">
-
-            <?php
-
-
-            try {
-                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                foreach ($pdo->query('SELECT * FROM missions') as $mission) {
-                    echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
-                    echo "<br>";
-                    // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
-                    echo "Mission: " . $mission['title'];
-                    echo '<br>';
-                    echo "Description: " . $mission['description'];
-                    echo "<br>";
-                    echo "Nom de code: " . $mission['nameCode'];
-                    echo "<br>";
-                    echo "Lieu: " . $mission['country'];
-                    echo "<br>";
-                    echo "Date de début: " . $mission['startDate'];
-                    echo "<br>";
-                    echo "Date de fin: " . $mission['endDate'] . '<br>';
-                    foreach ($pdo->query("SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
-                        foreach ($pdo->query("SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
-                            echo "Agent traitant: " . $agent['name'] . '<br>';
+                <div class="text-white">
+                    <div class="grid justify-items-stretch">
+                        <p class="justify-self-start text-white">Status :</p>
+                    </div>
+                    <div class="justify-self-center text-white">
+                        <?php
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM status') as $status) {
+                            echo '<input type="checkbox" class="checked:bg-blue-500" id= "$status[condition]">' . $status['conditions'] . '</input>';
+                            echo '<br>';
                         }
-                    }
-                    foreach ($pdo->query("SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
-                        foreach ($pdo->query("SELECT * FROM contacts WHERE id = $missioncontact[contact_id]") as $contact) {
-                            echo "Contact : " . $contact['name'] . '<br>';
+                        ?>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="text-white">
+                    <div class="grid justify-items-stretch">
+                        <p class="justify-self-start text-white">Countries :</p>
+                    </div>
+                    <div class="justify-self-center text-white">
+                        <?php
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM country') as $country) {
+                            echo '<input type="checkbox" class="checked:bg-blue-500" id= "$country[name]">' . $country['name'] . '</input>';
+                            echo "<br>";
                         }
-                    }
-                    foreach ($pdo->query("SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
-                        echo "Cible: " . $target['name'] . '<br>';
-                    }
-                    foreach ($pdo->query("SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
-                        foreach ($pdo->query("SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
-                            echo "Etat de la mission : " . $status['conditions'] . '<br>';
-                        }
-                    }
+                        ?>
+                    </div>
+                </div>
 
 
-                    echo "<br>";
-                    echo '<form action="updateMission.php" method="GET">';
-                    echo '<button type="submit" value="' . $mission['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
-                    echo 'Mettre à jour';
-                    echo '</button>';
-                    echo '</form>';
-                    echo '<form action="#" method="POST">';
-                    echo '<button type="submit" value="' . $mission['id'] . '" name="deleteMission" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
-                    echo 'Supprimer';
-                    echo '</button>';
-                    echo '</form>';
-                    echo "</div>";
+            </div>
+
+            <div class="cell">
+
+                <?php
+
+
+                try {
+                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                    foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+                        echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
+                        echo "<br>";
+                        // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
+                        echo "Mission: " . $mission['title'];
+                        echo '<br>';
+                        echo "Description: " . $mission['description'];
+                        echo "<br>";
+                        echo "Nom de code: " . $mission['nameCode'];
+                        echo "<br>";
+                        echo "Lieu: " . $mission['country'];
+                        echo "<br>";
+                        echo "Date de début: " . $mission['startDate'];
+                        echo "<br>";
+                        echo "Date de fin: " . $mission['endDate'] . '<br>';
+                        foreach ($pdo->query("SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
+                            foreach ($pdo->query("SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
+                                echo "Agent traitant: " . $agent['name'] . '<br>';
+                            }
+                        }
+                        foreach ($pdo->query("SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
+                            foreach ($pdo->query("SELECT * FROM contacts WHERE id = $missioncontact[contact_id]") as $contact) {
+                                echo "Contact : " . $contact['name'] . '<br>';
+                            }
+                        }
+                        foreach ($pdo->query("SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
+                            echo "Cible: " . $target['name'] . '<br>';
+                        }
+                        foreach ($pdo->query("SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
+                            foreach ($pdo->query("SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
+                                echo "Etat de la mission : " . $status['conditions'] . '<br>';
+                            }
+                        }
+
+
+                        echo "<br>";
+                        echo '<form action="updateMission.php" method="GET">';
+                        echo '<button type="submit" value="' . $mission['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
+                        echo 'Mettre à jour';
+                        echo '</button>';
+                        echo '</form>';
+                        echo '<form action="#" method="POST">';
+                        echo '<button type="submit" value="' . $mission['id'] . '" name="deleteMission" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
+                        echo 'Supprimer';
+                        echo '</button>';
+                        echo '</form>';
+                        echo "</div>";
+                    }
+                } catch (PDOException $e) {
+                    echo "<p>Erreur connexion à la base de données </p>";
                 }
-            } catch (PDOException $e) {
-                echo "<p>Erreur connexion à la base de données </p>";
-            }
-            ?>
+                ?>
 
-            <!-- supprimer les missions -->
-            <?php
+                <!-- supprimer les missions -->
+                <?php
 
-            try {
-                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql1 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
-                $sql2 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
-                $sql = "DELETE FROM missions WHERE id = '$_POST[deleteMission]'";
-                $pdo->exec($sql1);
-                $pdo->exec($sql2);
-                $pdo->exec($sql);
-            } catch (PDOException $e) {
-                echo $sql . '<br>' . $e->getMessage();
-            }
+                try {
+                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $sql1 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
+                    $sql2 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
+                    $sql = "DELETE FROM missions WHERE id = '$_POST[deleteMission]'";
+                    $pdo->exec($sql1);
+                    $pdo->exec($sql2);
+                    $pdo->exec($sql);
+                } catch (PDOException $e) {
+                    echo $sql . '<br>' . $e->getMessage();
+                }
 
-            $pdo = null;
+                $pdo = null;
 
-            ?>
+                ?>
+            </div>
+            </ul>
+
+
+
+
+
         </div>
-        </ul>
-
-
-
-
-        <!-- supprimer agent -->
-
-        <?php
-
-        ?>
+    </div>
 </body>
 
 </html>
