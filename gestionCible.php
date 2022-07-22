@@ -18,17 +18,17 @@
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvelle Cible</h1>
+    <h1 class="text-center text-white">New Target</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
-                <label for="name"> Nom : </label>
+                <label for="name"> Name : </label>
                 <input type="text" name="name" id="name" required />
-                <label for="firstname"> Prénom : </label>
+                <label for="firstname"> Firstname : </label>
                 <input type="text" name="firstname" id="firstname" required />
-                <label for="date"> Date de naissance </label>
+                <label for="date"> Date of birth </label>
                 <input type="date" name="date_of_birth" id="date_of_birth" required />
                 <label for="codeName"> Code : </label>
                 <input type="text" name="codeName" id="codeName" required />
@@ -68,7 +68,7 @@
                 <!-- <label for="mission_id"> Mission affectée : </label> -->
                 <!-- <input type="number" name="mission_id" id="mission_id" /> -->
                 <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 

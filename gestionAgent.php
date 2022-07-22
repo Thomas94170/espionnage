@@ -18,7 +18,7 @@
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvel Agent</h1>
+    <h1 class="text-center text-white">New Agent</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
@@ -26,11 +26,11 @@
             <form action="#" method="POST">
                 <!-- <label for="id"> Id : </label>
                 <input type="number" name="id" id="id" required /> -->
-                <label for="name"> Nom : </label>
+                <label for="name"> Name : </label>
                 <input type="text" name="name" id="name" required />
-                <label for="firstname"> Prénom : </label>
+                <label for="firstname"> Firstname : </label>
                 <input type="text" name="firstname" id="firstname" required />
-                <label for="date"> Date de naissance </label>
+                <label for="date"> Date of birth </label>
                 <input type="date" name="date_of_birth" id="date_of_birth" required />
                 <label for="authentificationCode"> Code : </label>
                 <input type="text" name="authentificationCode" id="authentificationCode" required />
@@ -52,10 +52,28 @@
                     }
                     ?>
                 </select>
+                <label for="skill_id"> Skill : </label>
+                <select name="skill_id" id="skill_id">
+                    <br>
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM skill') as $skill) {
+                            echo '<option value="' . $skill['id'] . '">' . $skill['speciality'] . '</option>';
+
+                            // echo '<input type="radio" class="checked:bg-blue-500" name="nationality_id" value= "' . $nationality['id'] . '" />';
+                            // echo $nationality['name'];
+                            // echo "<br>";
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
                 <!-- <label for="nationality_id"> Nationalité : </label> -->
                 <!-- <input type="number" name="nationality_id" id="nationality_id" required /> -->
                 <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 
@@ -67,6 +85,9 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
         $pdo->exec($sql);
+        foreach ($pdo->query("SELECT * FROM agents WHERE name = '$_POST[name]'") as $agents) {
+            $pdo->exec("INSERT INTO skillagent (skill_id, agent_id) VALUES ('$_POST[skill_id]','$agents[id]')");
+        }
         echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();

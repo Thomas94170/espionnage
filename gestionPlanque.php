@@ -18,7 +18,7 @@
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvelle Planque</h1>
+    <h1 class="text-center text-white">New Stash</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
@@ -28,7 +28,7 @@
                 <input type="text" name="id" id="id" required /> -->
                 <label for="code"> CODE : </label>
                 <input type="number" name="code" id="code" required />
-                <label for="address"> Adresse : </label>
+                <label for="address"> Adress : </label>
                 <input type="text" name="address" id="address" required />
                 <label for="type"> Type : </label>
                 <input type="text" name="type" id="type" required />
@@ -67,7 +67,7 @@
                 <!-- <label for="mission_id"> Mission : </label> -->
                 <!-- <input type="number" name="mission_id" id="mission_id" required /> -->
                 <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 
@@ -81,10 +81,10 @@
         foreach ($pdo->query("SELECT name FROM country WHERE id = '$_POST[country_id]'") as $country) {
             foreach ($pdo->query("SELECT country FROM missions WHERE id = '$_POST[mission_id]'") as $mission) {
                 if ($country['name'] != $mission['country']) {
-                    echo '<p class= "text-white text-center">Ajout Impossible, la planque doit être dans le pays de la mission';
+                    echo '<p class= "text-white text-center"><i class="fa-solid fa-triangle-exclamation"></i>Ajout Impossible, la planque doit être dans le pays de la mission';
                 } else {
                     $pdo->exec($sql);
-                    echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+                    echo '<p class="text-center text-white"><i class="fa-solid fa-clipboard-check"></i>Ajouté à la base de données</p>';
                 }
             }
         }

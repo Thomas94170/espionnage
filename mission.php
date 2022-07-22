@@ -22,27 +22,14 @@
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">
-                <a href="gestionMission.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600 "><i class="fa-solid fa-plus"></i>Ajouter Mission</a>
+                <a href="gestionMission.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600 "><i class="fa-solid fa-plus"></i>Add Mission</a>
             </div>
         </div>
         <br>
-        <div class="grid grid-rows-3 grid-flow-col gap-2">
+        <div class="grid grid-rows-1 grid-flow-col gap-2">
             <div class="row-span-3">
 
-                <div class="text-white">
-                    <div class="grid justify-items-stretch">
-                        <p class="justify-self-start text-white">Status :</p>
-                    </div>
-                    <div class="justify-self-center text-white">
-                        <?php
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM status') as $status) {
-                            echo '<input type="checkbox" class="checked:bg-blue-500" id= "$status[condition]">' . $status['conditions'] . '</input>';
-                            echo '<br>';
-                        }
-                        ?>
-                    </div>
-                </div>
+
                 <br>
                 <br>
                 <div class="text-white">
@@ -50,13 +37,29 @@
                         <p class="justify-self-start text-white">Countries :</p>
                     </div>
                     <div class="justify-self-center text-white">
-                        <?php
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM country') as $country) {
-                            echo '<input type="checkbox" class="checked:bg-blue-500" id= "$country[name]">' . $country['name'] . '</input>';
-                            echo "<br>";
-                        }
-                        ?>
+                        <form action="#" method="GET">
+                            <?php
+                            $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                            foreach ($pdo->query('SELECT * FROM country') as $country) {
+                                $checked = [];
+                                if (isset($_GET['country'])) {
+                                    $checked = $_GET['country'];
+                                }
+                            ?>
+                                <!-- dans mon foreach je mets en place un tableau vide afin de pouvoir selectionner x pays  -->
+
+                                <input type="checkbox" id="$country[name]" name="country[]" value=<?= $country['name'] ?> <?php if (in_array($country['name'], $checked)) {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>><?= $country['name'] ?></input>
+                                <br>
+                            <?php
+                            }
+                            ?>
+
+                            <button type="submit" class="mt-2 p-2 rounded-lg bg-blue-600 hover:bg-gradient-to-r from-cyan-500 to-blue-500  text-white" style="cursor: pointer;">
+                                Search
+                            </button>
+                        </form>
                     </div>
                 </div>
 
@@ -66,11 +69,25 @@
             <div class="cell">
 
                 <?php
-
+                // mise en place du filtre pour pouvoir selectionner un pays avec checkbox
+                // dans mon foreach je fais l appel de ma requete sql query($sql)
 
                 try {
                     $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+                    $sql = "SELECT * FROM missions WHERE country = country";
+                    $countries = [];
+                    if (isset($_GET['country'])) {
+                        $countries = $_GET['country'];
+                        if (count($countries) == 1) {
+                            $sql = "SELECT * FROM missions WHERE country = '$countries[0]'";
+                        } else if (count($countries) > 1) {
+                            $sql = "SELECT * FROM missions WHERE country = '$countries[0]'";
+                            foreach ($countries as $country) {
+                                $sql .= " OR country = '$country'";
+                            }
+                        }
+                    }
+                    foreach ($pdo->query($sql) as $mission) {
                         echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                         echo "<br>";
                         // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
@@ -78,16 +95,16 @@
                         echo '<br>';
                         echo "Description: " . $mission['description'];
                         echo "<br>";
-                        echo "Nom de code: " . $mission['nameCode'];
+                        echo "Code: " . $mission['nameCode'];
                         echo "<br>";
-                        echo "Lieu: " . $mission['country'];
+                        echo "Place: " . $mission['country'];
                         echo "<br>";
-                        echo "Date de début: " . $mission['startDate'];
+                        echo "Start: " . $mission['startDate'];
                         echo "<br>";
-                        echo "Date de fin: " . $mission['endDate'] . '<br>';
+                        echo "End: " . $mission['endDate'] . '<br>';
                         foreach ($pdo->query("SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
                             foreach ($pdo->query("SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
-                                echo "Agent traitant: " . $agent['name'] . '<br>';
+                                echo "Processing Agent: " . $agent['name'] . '<br>';
                             }
                         }
                         foreach ($pdo->query("SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
@@ -96,24 +113,24 @@
                             }
                         }
                         foreach ($pdo->query("SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
-                            echo "Cible: " . $target['name'] . '<br>';
+                            echo "Target: " . $target['name'] . '<br>';
                         }
                         foreach ($pdo->query("SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
                             foreach ($pdo->query("SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
-                                echo "Etat de la mission : " . $status['conditions'] . '<br>';
+                                echo "Mission Status : " . $status['conditions'] . '<br>';
                             }
                         }
 
 
                         echo "<br>";
                         echo '<form action="updateMission.php" method="GET">';
-                        echo '<button type="submit" value="' . $mission['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
-                        echo 'Mettre à jour';
+                        echo '<button type="submit" value="' . $mission['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 hover:bg-gradient-to-r from-lime-300 to-green-500 text-white" style="cursor: pointer;">';
+                        echo 'Update';
                         echo '</button>';
                         echo '</form>';
                         echo '<form action="#" method="POST">';
-                        echo '<button type="submit" value="' . $mission['id'] . '" name="deleteMission" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
-                        echo 'Supprimer';
+                        echo '<button type="submit" value="' . $mission['id'] . '" name="deleteMission" class="mt-2 p-2 rounded-lg bg-red-600 hover:bg-gradient-to-r from-orange-500 to-red-700 text-white" style="cursor: pointer;">';
+                        echo 'Delete';
                         echo '</button>';
                         echo '</form>';
                         echo "</div>";

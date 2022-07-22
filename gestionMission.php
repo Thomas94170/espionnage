@@ -18,7 +18,7 @@
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvelle Mission</h1>
+    <h1 class="text-center text-white">New Mission</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
@@ -33,7 +33,7 @@
                 <label for="nameCode"> Code :</label>
                 <input type="text" name="nameCode" id="nameCode" required />
                 <br>
-                <label for="country"> Pays : </label>
+                <label for="country"> Country : </label>
                 <select name="country" id="country">
                     <br>
                     <?php
@@ -45,9 +45,9 @@
 
                     ?>
                 </select>
-                <label for="startDate"> Début : </label>
+                <label for="startDate"> Start : </label>
                 <input type="date" name="startDate" id="startDate" required />
-                <label for="endDate"> Fin : </label>
+                <label for="endDate"> End : </label>
                 <input type="date" name="endDate" id="endDate" required />
                 <br>
                 <label for="agent"> Agent : </label>
@@ -75,7 +75,7 @@
 
                     ?>
                 </select>
-                <label for="skill"> Compétence : </label>
+                <label for="skill"> Skill : </label>
                 <select name="skill" id="skill">
                     <br>
                     <?php
@@ -99,7 +99,7 @@
 
                     ?>
                 </select>
-                <label for="status"> Statut : </label>
+                <label for="status"> Status : </label>
                 <select name="status" id="status">
                     <br>
                     <?php
@@ -112,7 +112,7 @@
                     ?>
                 </select>
                 <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 

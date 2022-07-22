@@ -18,7 +18,7 @@
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouveau Contact</h1>
+    <h1 class="text-center text-white">New Contact</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
@@ -26,11 +26,11 @@
             <form action="#" method="POST">
                 <!-- <label for="id"> ID : </label>
                 <input type="text" name="id" id="id" required /> -->
-                <label for="name"> Nom : </label>
+                <label for="name"> Name : </label>
                 <input type="text" name="name" id="name" required />
-                <label for="firstname"> Prénom : </label>
+                <label for="firstname"> Firstname : </label>
                 <input type="text" name="firstname" id="firstname" required />
-                <label for="date"> Date de naissance </label>
+                <label for="date"> Date of birth </label>
                 <input type="date" name="date_of_birth" id="date_of_birth" required />
                 <label for="codeName"> Code : </label>
                 <input type="text" name="codeName" id="codeName" required />
@@ -53,7 +53,7 @@
                 <!-- <label for="nationality_id"> Nationalité : </label> -->
                 <!-- <input type="number" name="nationality_id" id="nationality_id" required /> -->
                 <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 

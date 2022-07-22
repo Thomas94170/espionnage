@@ -36,15 +36,15 @@
                     echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400 text-white'>";
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
-                    echo "Nom: " . $contact['name'];
+                    echo "Name: " . $contact['name'];
                     echo '<br>';
-                    echo "Prénom: " . $contact['firstname'];
+                    echo "Firstanme: " . $contact['firstname'];
                     echo "<br>";
-                    echo "Date de naissance: " . $contact['date_of_birth'];
+                    echo "Date of birth: " . $contact['date_of_birth'];
                     echo "<br>";
-                    echo "Code Agent: " . $contact['codeName'];
+                    echo "Contact code: " . $contact['codeName'];
                     echo "<br>";
-                    echo "Nationalité: ";
+                    echo "Nationality: ";
                     echo "<br>";
 
                     switch ($contact['nationality_id']) {
@@ -103,12 +103,12 @@
                     echo "<br>";
                     echo '<form action="updateContact.php" method="GET">';
                     echo '<button type="submit" value="' . $contact['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
-                    echo 'Mettre à jour';
+                    echo 'Update';
                     echo '</button>';
                     echo '</form>';
                     echo '<form action="#" method="POST">';
                     echo '<button type="submit" value="' . $contact['id'] . '" name="deleteContact" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
-                    echo 'Supprimer';
+                    echo 'Delete';
                     echo '</button>';
                     echo '</form>';
                     echo "</div>";

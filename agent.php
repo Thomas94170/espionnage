@@ -22,7 +22,7 @@
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">
-                <a href="gestionAgent.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600 "><i class="fa-solid fa-plus"></i>Ajouter Agent</a>
+                <a href="gestionAgent.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600 "><i class="fa-solid fa-plus"></i>Add Agent</a>
             </div>
         </div>
         <br>
@@ -38,15 +38,15 @@
                     echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
-                    echo "Nom: " . $agent['name'];
+                    echo "Name: " . $agent['name'];
                     echo '<br>';
-                    echo "Prénom: " . $agent['firstname'];
+                    echo "Firstname: " . $agent['firstname'];
                     echo "<br>";
-                    echo "Date de naissance: " . $agent['date_of_birth'];
+                    echo "Date of birth: " . $agent['date_of_birth'];
                     echo "<br>";
-                    echo "Code Agent: " . $agent['authentificationCode'];
+                    echo "Agent code: " . $agent['authentificationCode'];
                     echo "<br>";
-                    echo "Nationalité: ";
+                    echo "Nationality: ";
                     echo "<br>";
 
                     switch ($agent['nationality_id']) {
@@ -102,15 +102,21 @@
                             echo "<img src='https://img.icons8.com/color/48/000000/syria.png'/>";
                             break;
                     }
+
+                    foreach ($pdo->query("SELECT * FROM skillagent WHERE agent_id = '$agent[id]'") as $skillAgent) {
+                        foreach ($pdo->query("SELECT * FROM skill WHERE id = $skillAgent[skill_id] ") as $skill) {
+                            echo "Speciality: " . $skill['speciality'];
+                        }
+                    }
                     echo "<br>";
                     echo '<form action="updateAgent.php" method="GET">';
                     echo '<button type="submit" value="' . $agent['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
-                    echo 'Mettre à jour';
+                    echo 'Update';
                     echo '</button>';
                     echo '</form>';
                     echo '<form action="#" method="POST">';
                     echo '<button type="submit" value="' . $agent['id'] . '" name="deleteAgent" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
-                    echo 'Supprimer';
+                    echo 'Delete';
                     echo '</button>';
                     echo '</form>';
                     echo "</div>";

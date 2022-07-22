@@ -58,6 +58,24 @@
                     }
                     ?>
                 </select>
+                <label for="skill"> Skill : </label>
+                <select name="skill_id" id="">
+                    <br>
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                        foreach ($pdo->query('SELECT * FROM skill') as $skill) {
+                            echo '<option value="' . $skillAgent['id'] . '">' . $skill['speciality'] . '</option>';
+
+                            // echo '<input type="radio" class="checked:bg-blue-500" name="nationality_id" value= "' . $nationality['id'] . '" />';
+                            // echo $nationality['name'];
+                            // echo "<br>";
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Erreur connexion à la base de données </p>";
+                    }
+                    ?>
+                </select>
                 <!-- <label for="majNat"> Nationality : </label> -->
                 <!-- <input type="number" name="majNat" id="majNat" required> -->
                 <br><br>
@@ -82,6 +100,7 @@
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "UPDATE agents SET name ='$_POST[majName]',firstname = '$_POST[majFirstname]',date_of_birth = '$_POST[majDob]',authentificationCode = '$_POST[majCode]',nationality_id = '$_POST[majNat]' WHERE id = '$_GET[update]'";
+        $sqlSkill = "UPDATE skillagent SET skill_id =  '$_POST[skill_id]";
         $pdo->exec($sql);
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
