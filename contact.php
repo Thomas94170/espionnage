@@ -26,15 +26,19 @@
         <br>
         <br>
         <br>
-        <label class="relative block">
-            <span class="sr-only">Search</span>
-            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                <svg class="h-5 w-5 fill-slate-300" viewBox="0 0 20 20">
-                    <!-- ... -->
-                </svg>
-            </span>
-            <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search by name..." type="text" name="search" />
-        </label>
+        <form action="#" method="GET">
+            <label class="relative block">
+                <span class="sr-only">Search</span>
+                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                    <svg class="h-5 w-5 fill-slate-300" viewBox="0 0 20 20">
+
+                    </svg>
+                </span>
+                <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search by name..." type="text" name="searchContact" />
+            </label>
+            <button type="submit" value="searchContact" name="searchC" class="mt-2 p-2 rounded-lg bg-blue-600 text-white" style="cursor: pointer">Search</button>
+            <br>
+        </form>
         <br>
 
         <div class="">
@@ -44,7 +48,12 @@
 
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                foreach ($pdo->query('SELECT * FROM contacts') as $contact) {
+                if (isset($_GET['searchC']) && !empty(trim($_GET['searchContact']))) {
+                    $sql = "SELECT * FROM contacts WHERE name = '$_GET[searchContact]'";
+                } else {
+                    $sql = "SELECT * FROM contacts WHERE name = name";
+                }
+                foreach ($pdo->query($sql) as $contact) {
                     echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400 text-white'>";
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';

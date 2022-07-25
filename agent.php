@@ -41,31 +41,25 @@
             <button type="submit" value="searchAgent" name="searchA" class="mt-2 p-2 rounded-lg bg-blue-600 text-white" style="cursor: pointer">Search</button>
             <br>
         </form>
+        <br>
         <!-- requete pour ma barre de recherche -->
         <!-- $searchAgent correspond au name de ma searchbar -->
         <!-- $searchA correspond au name de mon button -->
-        <?php
-        $searchAgent = $_GET['searchAgent'];
-        $search = $_GET['searchA'];
-        if (isset($search) && !empty($searchAgent)) {
-            $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-            $res = $pdo->prepare("SELECT name FROM agents WHERE name like '%$searchAgent%' ");
-            $res->setFetchMode(PDO::FETCH_ASSOC);
-            $res->execute();
-            $tab = $res->fetchAll();
-            $showMe = 'oui';
-        }
-        ?>
 
 
-        <div class="cell" id="result">
+        <div class="cell">
+
 
             <?php
 
-
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                foreach ($pdo->query('SELECT * FROM agents') as $agent) {
+                if (isset($_GET['searchA']) && !empty(trim($_GET['searchAgent']))) {
+                    $sql = "SELECT * FROM agents WHERE name = '$_GET[searchAgent]'";
+                } else {
+                    $sql = "SELECT * FROM agents WHERE name = name";
+                }
+                foreach ($pdo->query($sql) as $agent) {
                     echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
@@ -155,9 +149,11 @@
             } catch (PDOException $e) {
                 echo "<p>Erreur connexion à la base de données </p>";
             }
+
             ?>
 
             <!-- supprimer les agents -->
+
             <?php
 
             try {
