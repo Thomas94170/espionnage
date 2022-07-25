@@ -18,7 +18,7 @@
     <div class="grid justify-center">
         <div class="justify-self-center">
 
-            <a class="bg-white  rounded-md" href="login.php">Login</a>
+            <a class="bg-white hover:bg-gradient-to-r from-orange-500 to-red-700 rounded-md" href="login.php">Login</a>
 
         </div>
     </div>

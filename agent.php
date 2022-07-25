@@ -38,7 +38,7 @@
                 </span>
                 <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search by name..." type="text" name="searchAgent" />
             </label>
-            <button type="submit" value="searchAgent" name="searchA" class="mt-2 p-2 rounded-lg bg-blue-600 text-white" style="cursor: pointer">Search</button>
+            <button type="submit" value="searchAgent" name="searchA" class="mt-2 p-2 rounded-lg bg-blue-600 hover:bg-gradient-to-r from-cyan-500 to-blue-500 text-white" style="cursor: pointer">Search</button>
             <br>
         </form>
         <br>
@@ -135,12 +135,12 @@
                     }
                     echo "<br>";
                     echo '<form action="updateAgent.php" method="GET">';
-                    echo '<button type="submit" value="' . $agent['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
+                    echo '<button type="submit" value="' . $agent['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 hover:bg-gradient-to-r from-lime-300 to-green-500 text-white" style="cursor: pointer;">';
                     echo 'Update';
                     echo '</button>';
                     echo '</form>';
                     echo '<form action="#" method="POST">';
-                    echo '<button type="submit" value="' . $agent['id'] . '" name="deleteAgent" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
+                    echo '<button type="submit" value="' . $agent['id'] . '" name="deleteAgent" class="mt-2 p-2 rounded-lg bg-red-600 hover:bg-gradient-to-r from-orange-500 to-red-700 text-white" style="cursor: pointer;">';
                     echo 'Delete';
                     echo '</button>';
                     echo '</form>';

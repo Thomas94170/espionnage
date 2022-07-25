@@ -65,7 +65,7 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO contacts (`name`,`firstname`,`date_of_birth`,`codeName`,`nationality_id`) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]')";
         $pdo->exec($sql);
-        echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+        echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }

@@ -30,7 +30,7 @@
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Mettre à jour</h1>
+    <h1 class="text-center text-white">Update</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
@@ -78,14 +78,14 @@
                 <!-- <label for="majMis"> Mission : </label> -->
                 <!-- <input type="number" name="majMis" id="majMis" required> -->
                 <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
 
         </div>
         <br>
         <br>
         <div class="justify-self-center">
-            <a href="cibles.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600">Retour</a>
+            <a href="cibles.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600">Back</a>
         </div>
 
 

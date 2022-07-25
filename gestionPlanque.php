@@ -84,7 +84,7 @@
                     echo '<p class= "text-white text-center"><i class="fa-solid fa-triangle-exclamation"></i>Ajout Impossible, la planque doit être dans le pays de la mission';
                 } else {
                     $pdo->exec($sql);
-                    echo '<p class="text-center text-white"><i class="fa-solid fa-clipboard-check"></i>Ajouté à la base de données</p>';
+                    echo '<p class="text-center text-white"><i class="fa-solid fa-clipboard-check"></i>Add in database</p>';
                 }
             }
         }

@@ -41,12 +41,12 @@
                     echo '<br>';
                     echo "<br>";
                     echo '<form action="updateSkill.php" method="GET">';
-                    echo '<button type="submit" value="' . $skill['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
+                    echo '<button type="submit" value="' . $skill['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 hover:bg-gradient-to-r from-lime-300 to-green-500 text-white" style="cursor: pointer;">';
                     echo 'Update';
                     echo '</button>';
                     echo '</form>';
                     echo '<form action="#" method="POST">';
-                    echo '<button type="submit" value="' . $skill['speciality'] . '" name="delete" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
+                    echo '<button type="submit" value="' . $skill['speciality'] . '" name="delete" class="mt-2 p-2 rounded-lg bg-red-600 hover:bg-gradient-to-r from-orange-500 to-red-700 text-white" style="cursor: pointer;">';
                     echo 'Delete';
                     echo '</button>';
                     echo '</form>';

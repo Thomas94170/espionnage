@@ -18,16 +18,16 @@
     // require_once('sidebar.php');
     ?>
     <br>
-    <h1 class="text-center text-white">Nouvelle Compétence</h1>
+    <h1 class="text-center text-white">New Skill</h1>
     <br>
     <div class="grid grid justify-items-stretch">
         <br>
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
-                <label for="speciality"> Compétence : </label>
+                <label for="speciality"> Skill : </label>
                 <input type="text" name="speciality" id="speciality" required>
                 <br><br>
-                <input type="submit" value="Valider" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 
@@ -39,7 +39,7 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO skill (`speciality`) VALUES ('$_POST[speciality]')";
         $pdo->exec($sql);
-        echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+        echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }

@@ -20,7 +20,7 @@
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">
-                <a href="gestionPlanque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600"><i class="fa-solid fa-plus"></i>Ajouter Planque</a>
+                <a href="gestionPlanque.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600"><i class="fa-solid fa-plus"></i>Add Stash</a>
             </div>
         </div>
         <br>
@@ -100,13 +100,13 @@
                     }
                     echo "<br>";
                     echo '<form action="updateStash.php" method="GET">';
-                    echo '<button type="submit" value="' . $stash['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
-                    echo 'Mettre à jour';
+                    echo '<button type="submit" value="' . $stash['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 hover:bg-gradient-to-r from-lime-300 to-green-500 text-white" style="cursor: pointer;">';
+                    echo 'Update';
                     echo '</button>';
                     echo '</form>';
                     echo '<form action="#" method="POST">';
-                    echo '<button type="submit" value="' . $stash['id'] . '" name="deleteStash" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
-                    echo 'Supprimer';
+                    echo '<button type="submit" value="' . $stash['id'] . '" name="deleteStash" class="mt-2 p-2 rounded-lg bg-red-600 hover:bg-gradient-to-r from-orange-500 to-red-700 text-white" style="cursor: pointer;">';
+                    echo 'Delete';
                     echo '</button>';
                     echo '</form>';
                     echo "</div>";

@@ -20,7 +20,7 @@
         <br>
         <div class="grid justify-items-stretch">
             <div class="justify-self-center">
-                <a href="gestionContact.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600"><i class="fa-solid fa-plus"></i>Ajouter Contact</a>
+                <a href="gestionContact.php" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:text-slate-900 bg-white-600 hover:bg-sky-600"><i class="fa-solid fa-plus"></i>Add Contact</a>
             </div>
         </div>
         <br>
@@ -36,7 +36,7 @@
                 </span>
                 <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search by name..." type="text" name="searchContact" />
             </label>
-            <button type="submit" value="searchContact" name="searchC" class="mt-2 p-2 rounded-lg bg-blue-600 text-white" style="cursor: pointer">Search</button>
+            <button type="submit" value="searchContact" name="searchC" class="mt-2 p-2 rounded-lg bg-blue-600 hover:bg-gradient-to-r from-cyan-500 to-blue-500 text-white" style="cursor: pointer">Search</button>
             <br>
         </form>
         <br>
@@ -123,12 +123,12 @@
                     }
                     echo "<br>";
                     echo '<form action="updateContact.php" method="GET">';
-                    echo '<button type="submit" value="' . $contact['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 text-white" style="cursor: pointer;">';
+                    echo '<button type="submit" value="' . $contact['id'] . '" name="update" class="mt-2 p-2 rounded-lg bg-green-600 hover:bg-gradient-to-r from-lime-300 to-green-500 text-white" style="cursor: pointer;">';
                     echo 'Update';
                     echo '</button>';
                     echo '</form>';
                     echo '<form action="#" method="POST">';
-                    echo '<button type="submit" value="' . $contact['id'] . '" name="deleteContact" class="mt-2 p-2 rounded-lg bg-red-600 text-white" style="cursor: pointer;">';
+                    echo '<button type="submit" value="' . $contact['id'] . '" name="deleteContact" class="mt-2 p-2 rounded-lg bg-red-600 hover:bg-gradient-to-r from-orange-500 to-red-700 text-white" style="cursor: pointer;">';
                     echo 'Delete';
                     echo '</button>';
                     echo '</form>';

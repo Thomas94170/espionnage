@@ -88,7 +88,7 @@
         foreach ($pdo->query("SELECT * FROM agents WHERE name = '$_POST[name]'") as $agents) {
             $pdo->exec("INSERT INTO skillagent (skill_id, agent_id) VALUES ('$_POST[skill_id]','$agents[id]')");
         }
-        echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
+        echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
