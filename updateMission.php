@@ -146,10 +146,14 @@
         $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "UPDATE missions SET title ='$_POST[majTitle]',description = '$_POST[majDescription]',nameCode = '$_POST[majCode]',country = '$_POST[majCountry]',startDate = '$_POST[startDate]',endDate = '$_POST[endDate]' WHERE id = '$_GET[update]'";
-        $sql1 = "UPDATE agents SET name ='$_POST[agent]' WHERE id = '$_GET[update]'";
-        $sq2 = "UPDATE contacts SET name ='$_POST[contact]' WHERE id = '$_GET[update]'";
-        $sq3 = "UPDATE skill SET speciality ='$_POST[skill]' WHERE id = '$_GET[update]'";
         $pdo->exec($sql);
+        foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
+            $pdo->exec("UPDATE missionagent SET agent_id ='$_POST[agent]' WHERE mission_id = '$mission[id]'");
+            $pdo->exec("UPDATE missioncontact SET contact_id ='$_POST[contact]' WHERE mission_id = '$mission[id]'");
+        }
+
+
+        $sq3 = "UPDATE skill SET speciality ='$_POST[skill]' WHERE id = '$_GET[update]'";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }

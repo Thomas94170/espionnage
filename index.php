@@ -18,7 +18,7 @@
     <div class="grid justify-center">
         <div class="justify-self-center">
 
-            <a class="bg-sky-600 hover:bg-sky-700 rounded-md" href="login.php">Login</a>
+            <a class="bg-white  rounded-md" href="login.php">Login</a>
 
         </div>
     </div>
@@ -26,7 +26,7 @@
 
 
 
-    <div class="text-center">
+    <div class="text-center text-gray-300">
         <p>
 
             <?php
