@@ -22,7 +22,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     //mysql_real_escape_string, htmlspecialchars contrer attaque sql xss
     $username = mysqli_real_escape_string($conn, htmlspecialchars($_POST['username']));
     $password = mysqli_real_escape_string($conn, htmlspecialchars($_POST['password']));
-    // 23 24 28 j ai remplacé $db par $conn
+    // 23 24 28 43 j ai remplacé $db par $conn
     if ($username !== '' && $password !== '') {
         $req = "SELECT count(*) FROM admin where name = '" . $username . "' and password= '" . $password . "' ";
         $exec_requete = mysqli_query($conn, $req);
@@ -40,4 +40,4 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 } else {
     header('Location: login.php');
 }
-mysqli_close($db);
+mysqli_close($conn);
