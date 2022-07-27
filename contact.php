@@ -147,6 +147,8 @@
                 $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql = "DELETE FROM contacts WHERE id = '$_POST[deleteContact]'";
+                $sql1 = "DELETE FROM missioncontact WHERE contact_id = '$_POST[deleteContact]'";
+                $pdo->exec($sql1);
                 $pdo->exec($sql);
             } catch (PDOException $e) {
                 echo $sql . '<br>' . $e->getMessage();

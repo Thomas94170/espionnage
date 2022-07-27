@@ -148,9 +148,17 @@
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $sql1 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
                     $sql2 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
+                    $sql3 = "DELETE FROM stash WHERE mission_id = '$_POST[deleteMission]'";
+                    $sql4 = "DELETE FROM targets WHERE mission_id = '$_POST[deleteMission]'";
+                    $sql5 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
+                    $sql6 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
                     $sql = "DELETE FROM missions WHERE id = '$_POST[deleteMission]'";
                     $pdo->exec($sql1);
                     $pdo->exec($sql2);
+                    $pdo->exec($sql3);
+                    $pdo->exec($sql4);
+                    $pdo->exec($sql5);
+                    $pdo->exec($sql6);
                     $pdo->exec($sql);
                 } catch (PDOException $e) {
                     echo $sql . '<br>' . $e->getMessage();

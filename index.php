@@ -31,8 +31,19 @@
 
             <?php
 
+            $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+            $cleardb_server = $cleardb_url["eu-cdbr-west-03.cleardb.net"];
+            $cleardb_username = $cleardb_url["b993bfa7bc6b92"];
+            $cleardb_password = $cleardb_url["e2103544"];
+            $cleardb_db = substr($cleardb_url["heroku_94efd7f137d0ee9"], 1);
+            $active_group = 'default';
+            $query_builder = TRUE;
+            // Connect to DB
+            $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
             try {
-                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($pdo->query('SELECT * FROM missions') as $mission) {
                     echo "<br>";
                     echo "Mission: " . $mission['title'];

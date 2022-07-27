@@ -58,9 +58,9 @@
                     ?>
                 </select>
                 </select>
-                <label for="startDate"> Début : </label>
+                <label for="startDate"> Start : </label>
                 <input type="date" name="startDate" id="startDate" required />
-                <label for="endDate"> Fin : </label>
+                <label for="endDate"> End : </label>
                 <input type="date" name="endDate" id="endDate" required />
                 <br>
                 <label for="agent"> Agent : </label>
@@ -88,7 +88,7 @@
 
                     ?>
                 </select>
-                <label for="skill"> Compétence : </label>
+                <label for="skill"> Skill : </label>
                 <select name="skill" id="skill">
                     <br>
                     <?php
@@ -149,11 +149,11 @@
         $pdo->exec($sql);
         foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
             $pdo->exec("UPDATE missionagent SET agent_id ='$_POST[agent]' WHERE mission_id = '$mission[id]'");
-            $pdo->exec("UPDATE missioncontact SET contact_id ='$_POST[contact]' WHERE mission_id = '$mission[id]'");
+            $pdo->exec("UPDATE missioncontact SET contact_id ='$_POST[contact]', mission_id = '$mission[id]'");
         }
 
 
-        $sq3 = "UPDATE skill SET speciality ='$_POST[skill]' WHERE id = '$_GET[update]'";
+        // $sq3 = "UPDATE skill SET speciality ='$_POST[skill]' WHERE id = '$_GET[update]'";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
