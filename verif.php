@@ -3,12 +3,15 @@
 session_start();
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $cleardb_server = $cleardb_url["eu-cdbr-west-03.cleardb.net"];
-    $cleardb_username = $cleardb_url["b993bfa7bc6b92"];
-    $cleardb_password = $cleardb_url["e2103544"];
-    $cleardb_db = substr($cleardb_url["heroku_94efd7f137d0ee9"], 1);
+    $cleardb_server = $cleardb_url["host"];
+    $cleardb_username = $cleardb_url["user"];
+    $cleardb_password = $cleardb_url["pass"];
+    $cleardb_db = substr($cleardb_url["path"], 1);
     $active_group = 'default';
     $query_builder = TRUE;
+    // Connect to DB
+    $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
     // Connect to DB
     $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db)
         or die('pas de connexion!');
