@@ -31,7 +31,7 @@
 
             <?php
 
-            $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+            $cleardb_url = parse_url(getenv("mysql://b993bfa7bc6b92:e2103544@eu-cdbr-west-03.cleardb.net/heroku_94efd7f137d0ee9?reconnect=true"));
             $cleardb_server = $cleardb_url["eu-cdbr-west-03.cleardb.net"];
             $cleardb_username = $cleardb_url["b993bfa7bc6b92"];
             $cleardb_password = $cleardb_url["e2103544"];
