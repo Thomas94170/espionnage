@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styleAgent.css">
-    <title>Document</title>
+    <title>Spy Mission</title>
 </head>
 
 <body>
@@ -39,7 +39,8 @@
                     <div class="justify-self-center text-white">
                         <form action="#" method="GET">
                             <?php
-                            $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                            $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                            // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                             foreach ($pdo->query('SELECT * FROM country') as $country) {
                                 $checked = [];
                                 if (isset($_GET['country'])) {
@@ -71,9 +72,17 @@
                 <?php
                 // mise en place du filtre pour pouvoir selectionner un pays avec checkbox
                 // dans mon foreach je fais l appel de ma requete sql query($sql)
+                $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+                $cleardb_server = $cleardb_url["host"];
+                $cleardb_username = $cleardb_url["user"];
+                $cleardb_password = $cleardb_url["pass"];
+                $cleardb_db = substr($cleardb_url["path"], 1);
+                $active_group = 'default';
+                $query_builder = TRUE;
 
                 try {
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                     $sql = "SELECT * FROM missions WHERE country = country";
                     $countries = [];
                     if (isset($_GET['country'])) {
