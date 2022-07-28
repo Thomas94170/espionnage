@@ -45,7 +45,7 @@
 
 
             try {
-                $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                // $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
                 // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 foreach ($conn->query('SELECT * FROM missions') as $mission) {
                     echo "<br>";
