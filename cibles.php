@@ -44,10 +44,19 @@
         <div class="">
 
             <?php
+            $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+            $cleardb_server = $cleardb_url["host"];
+            $cleardb_username = $cleardb_url["user"];
+            $cleardb_password = $cleardb_url["pass"];
+            $cleardb_db = substr($cleardb_url["path"], 1);
+            $active_group = 'default';
+            $query_builder = TRUE;
+
 
 
             try {
-                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
                 if (isset($_GET['searchT']) && !empty(trim($_GET['searchTarget']))) {
                     $sql = "SELECT * FROM targets WHERE name = '$_GET[searchTarget]'";
                 } else {

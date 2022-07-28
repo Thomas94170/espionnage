@@ -62,7 +62,8 @@
 
 
             try {
-                $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
+                $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                // $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
                 if (isset($_GET['searchA']) && !empty(trim($_GET['searchAgent']))) {
                     $sql = "SELECT * FROM agents WHERE name = '$_GET[searchAgent]'";
                 } else {
