@@ -39,7 +39,8 @@
 
 
             try {
-                $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
+                $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                // $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
                 foreach ($pdo->query('SELECT * FROM skill') as $skill) {
                     $spec = '';
                     echo "<div class=' flex justify-between border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400 text-white'>";
@@ -73,6 +74,7 @@
         <?php
 
         try {
+            // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
             $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "DELETE FROM skill WHERE speciality = '$_POST[delete]'";
