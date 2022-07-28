@@ -152,9 +152,9 @@
                 $query_builder = TRUE;
 
                 try {
-                    //  $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                    $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    // $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
+                    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $sql1 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
                     $sql2 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
                     $sql3 = "DELETE FROM stash WHERE mission_id = '$_POST[deleteMission]'";
@@ -162,13 +162,20 @@
                     $sql5 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
                     $sql6 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
                     $sql = "DELETE FROM missions WHERE id = '$_POST[deleteMission]'";
-                    $pdo->exec($sql1);
-                    $pdo->exec($sql2);
-                    $pdo->exec($sql3);
-                    $pdo->exec($sql4);
-                    $pdo->exec($sql5);
-                    $pdo->exec($sql6);
-                    $pdo->exec($sql);
+                    // $pdo->exec($sql1);
+                    // $pdo->exec($sql2);
+                    // $pdo->exec($sql3);
+                    // $pdo->exec($sql4);
+                    // $pdo->exec($sql5);
+                    // $pdo->exec($sql6);
+                    // $pdo->exec($sql);
+                    mysqli_query($pdo, $sql1);
+                    mysqli_query($pdo, $sql2);
+                    mysqli_query($pdo, $sql3);
+                    mysqli_query($pdo, $sql4);
+                    mysqli_query($pdo, $sql5);
+                    mysqli_query($pdo, $sql6);
+                    mysqli_query($pdo, $sql);
                 } catch (PDOException $e) {
                     echo $sql . '<br>' . $e->getMessage();
                 }
