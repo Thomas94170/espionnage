@@ -152,7 +152,7 @@
                 $query_builder = TRUE;
 
                 try {
-                    // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    //  $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
                     $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $sql1 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
