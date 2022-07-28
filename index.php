@@ -55,8 +55,8 @@
 
 
             try {
-                // $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
+                $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                // $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
                 foreach ($pdo->query('SELECT * FROM missions') as $mission) {
                     echo "<br>";
                     echo "Mission: " . $mission['title'];
