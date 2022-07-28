@@ -166,7 +166,7 @@
             <?php
 
             try {
-                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql = "DELETE FROM agents WHERE id = '$_POST[deleteAgent]'";
                 $sql1 = "DELETE FROM skillagent WHERE agent_id = '$_POST[deleteAgent]'";
@@ -185,7 +185,7 @@
 
 
 
-        <!-- supprimer agent -->
+
 
         <?php
 
