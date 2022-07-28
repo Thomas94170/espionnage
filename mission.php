@@ -143,8 +143,17 @@
                 <!-- supprimer les missions -->
                 <?php
 
+                $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+                $cleardb_server = $cleardb_url["host"];
+                $cleardb_username = $cleardb_url["user"];
+                $cleardb_password = $cleardb_url["pass"];
+                $cleardb_db = substr($cleardb_url["path"], 1);
+                $active_group = 'default';
+                $query_builder = TRUE;
+
                 try {
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                    // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $sql1 = "DELETE FROM missionagent WHERE mission_id = '$_POST[deleteMission]'";
                     $sql2 = "DELETE FROM missioncontact WHERE mission_id = '$_POST[deleteMission]'";
