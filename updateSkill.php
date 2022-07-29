@@ -30,7 +30,7 @@
         echo $sql . '<br>' . $e->getMessage();
     }
 
-    $pdo = null;
+    // $pdo = null;
     ?>
 
     <?php
@@ -45,7 +45,12 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="maj"> Compétence : </label>
-                <input type="text" name="maj" id="maj" required>
+                <input type="text" name="maj" id="maj" required <?php
+                                                                foreach (mysqli_query($pdo, "SELECT * FROM skill WHERE id = '$_GET[update]'") as $skill) {
+                                                                    echo 'value="' . $skill['name'] . '" ';
+                                                                }
+
+                                                                ?>>
                 <br><br>
                 <input type="submit" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
