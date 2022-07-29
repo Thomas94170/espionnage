@@ -10,6 +10,8 @@ body{
     background-image: url(./img/specialforce.jpg);
     background-size: cover;
     background-position: center;
+    filter: brightness(50%);
+-webkit-filter: brightness(50%);
     
 }
 
