@@ -38,9 +38,18 @@
                 <label for="nationality_id"> Nationality : </label>
                 <select name="nationality_id" id="">
                     <?php
+
+                    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+                    $cleardb_server = $cleardb_url["host"];
+                    $cleardb_username = $cleardb_url["user"];
+                    $cleardb_password = $cleardb_url["pass"];
+                    $cleardb_db = substr($cleardb_url["path"], 1);
+                    $active_group = 'default';
+                    $query_builder = TRUE;
+
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM nationality') as $nationality) {
+                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                        foreach (mysqli_query($pdo, 'SELECT * FROM nationality') as $nationality) {
 
 
                             echo '<option value="' . $nationality['id'] . '">' . $nationality['name'] . '</option>';
@@ -61,10 +70,10 @@
     <?php
 
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO contacts (`name`,`firstname`,`date_of_birth`,`codeName`,`nationality_id`) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]')";
-        $pdo->exec($sql);
+        mysqli_query($pdo, $sql);
         echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();

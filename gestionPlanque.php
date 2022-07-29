@@ -35,9 +35,17 @@
                 <label for="country_id"> Country : </label>
                 <select name="country_id" id="">
                     <?php
+
+                    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+                    $cleardb_server = $cleardb_url["host"];
+                    $cleardb_username = $cleardb_url["user"];
+                    $cleardb_password = $cleardb_url["pass"];
+                    $cleardb_db = substr($cleardb_url["path"], 1);
+                    $active_group = 'default';
+                    $query_builder = TRUE;
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM country') as $country) {
+                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                        foreach (mysqli_query($pdo, 'SELECT * FROM country') as $country) {
 
                             echo '<option value="' . $country['id'] . '">' . $country['name'] . '</option>';
                         }
@@ -50,8 +58,8 @@
                 <select name="mission_id" id="">
                     <?php
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM missions') as $mission) {
+                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                        foreach (mysqli_query($pdo, 'SELECT * FROM missions') as $mission) {
 
 
 
@@ -75,15 +83,15 @@
     <?php
 
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO stash (`code`,`address`,`type`,`country_id`,`mission_id`) VALUES ('$_POST[code]','$_POST[address]','$_POST[type]','$_POST[country_id]','$_POST[mission_id]')";
-        foreach ($pdo->query("SELECT name FROM country WHERE id = '$_POST[country_id]'") as $country) {
-            foreach ($pdo->query("SELECT country FROM missions WHERE id = '$_POST[mission_id]'") as $mission) {
+        foreach (mysqli_query($pdo, "SELECT name FROM country WHERE id = '$_POST[country_id]'") as $country) {
+            foreach (mysqli_query($pdo, "SELECT country FROM missions WHERE id = '$_POST[mission_id]'") as $mission) {
                 if ($country['name'] != $mission['country']) {
                     echo '<p class= "text-white text-center"><i class="fa-solid fa-triangle-exclamation"></i>Ajout Impossible, la planque doit être dans le pays de la mission';
                 } else {
-                    $pdo->exec($sql);
+                    mysqli_query($pdo, $sql);
                     echo '<p class="text-center text-white"><i class="fa-solid fa-clipboard-check"></i>Add in database</p>';
                 }
             }

@@ -13,11 +13,19 @@
 <body>
     <?php
 
+    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    $cleardb_server = $cleardb_url["host"];
+    $cleardb_username = $cleardb_url["user"];
+    $cleardb_password = $cleardb_url["pass"];
+    $cleardb_db = substr($cleardb_url["path"], 1);
+    $active_group = 'default';
+    $query_builder = TRUE;
+
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT * FROM contacts";
-        $pdo->exec($sql);
+        mysqli_query($pdo, $sql);
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
@@ -46,8 +54,8 @@
                 <select name="majCountry" id="majCountry">
                     <?php
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM country') as $country) {
+                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                        foreach (mysqli_query($pdo, 'SELECT * FROM country') as $country) {
                             // echo '<input type="radio" class="checked:bg-blue-500" name="majNat" value= "' . $nationality['id'] . '" />';
 
                             echo '<option value="' . $country['name'] . '">' . $country['name'] . '</option>';
@@ -68,8 +76,8 @@
                     <br>
                     <?php
 
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM agents') as $agent) {
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM agents') as $agent) {
                         echo '<option value="' . $agent['id'] . '">' . $agent['name'] . '</option>';
                     }
 
@@ -81,8 +89,8 @@
                     <br>
                     <?php
 
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM contacts') as $contact) {
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM contacts') as $contact) {
                         echo '<option value="' . $contact['id'] . '">' . $contact['name'] . '</option>';
                     }
 
@@ -93,8 +101,8 @@
                     <br>
                     <?php
 
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM skill') as $skill) {
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM skill') as $skill) {
                         echo '<option value="' . $skill['id'] . '">' . $skill['speciality'] . '</option>';
                     }
 
@@ -105,8 +113,8 @@
                     <br>
                     <?php
 
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM type') as $type) {
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM type') as $type) {
                         echo '<option value="' . $type['id'] . '">' . $type['name'] . '</option>';
                     }
 
@@ -117,8 +125,8 @@
                     <br>
                     <?php
 
-                    $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                    foreach ($pdo->query('SELECT * FROM status') as $status) {
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM status') as $status) {
                         echo '<option value="' . $status['id'] . '">' . $status['conditions'] . '</option>';
                     }
                     ?>
@@ -143,13 +151,13 @@
     <?php
 
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "UPDATE missions SET title ='$_POST[majTitle]',description = '$_POST[majDescription]',nameCode = '$_POST[majCode]',country = '$_POST[majCountry]',startDate = '$_POST[startDate]',endDate = '$_POST[endDate]' WHERE id = '$_GET[update]'";
-        $pdo->exec($sql);
+        mysqli_query($pdo, $sql);
         foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
-            $pdo->exec("UPDATE missionagent SET agent_id ='$_POST[agent]' WHERE mission_id = '$mission[id]'");
-            $pdo->exec("UPDATE missioncontact SET contact_id ='$_POST[contact]', mission_id = '$mission[id]'");
+            mysqli_query($pdo, "UPDATE missionagent SET agent_id ='$_POST[agent]' WHERE mission_id = '$mission[id]'");
+            mysqli_query($pdo, "UPDATE missioncontact SET contact_id ='$_POST[contact]', mission_id = '$mission[id]'");
         }
 
 

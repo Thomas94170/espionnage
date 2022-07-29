@@ -39,9 +39,17 @@
                 <select name="nationality_id" id="">
                     <br>
                     <?php
+                    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+                    $cleardb_server = $cleardb_url["host"];
+                    $cleardb_username = $cleardb_url["user"];
+                    $cleardb_password = $cleardb_url["pass"];
+                    $cleardb_db = substr($cleardb_url["path"], 1);
+                    $active_group = 'default';
+                    $query_builder = TRUE;
+
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM nationality') as $nationality) {
+                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                        foreach (mysqli_query($pdo, 'SELECT * FROM nationality') as $nationality) {
                             echo '<option value="' . $nationality['id'] . '">' . $nationality['name'] . '</option>';
                             // echo '<input type="radio" class="checked:bg-blue-500" name="nationality_id" value= "' . $nationality['id'] . '" />';
                             // echo $nationality['name'];
@@ -57,8 +65,8 @@
                     <br>
                     <?php
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                        foreach ($pdo->query('SELECT * FROM skill') as $skill) {
+                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                        foreach (mysqli_query($pdo, 'SELECT * FROM skill') as $skill) {
                             echo '<option value="' . $skill['id'] . '">' . $skill['speciality'] . '</option>';
 
                             // echo '<input type="radio" class="checked:bg-blue-500" name="nationality_id" value= "' . $nationality['id'] . '" />';
@@ -81,12 +89,12 @@
     <?php
 
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
-        $pdo->exec($sql);
-        foreach ($pdo->query("SELECT * FROM agents WHERE name = '$_POST[name]'") as $agents) {
-            $pdo->exec("INSERT INTO skillagent (skill_id, agent_id) VALUES ('$_POST[skill_id]','$agents[id]')");
+        mysqli_query($pdo, $sql);
+        foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE name = '$_POST[name]'") as $agents) {
+            mysqli_query($pdo, "INSERT INTO skillagent (skill_id, agent_id) VALUES ('$_POST[skill_id]','$agents[id]')");
         }
         echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
