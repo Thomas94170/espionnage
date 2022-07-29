@@ -128,10 +128,10 @@
             <?php
 
             try {
-                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql = "DELETE FROM stash WHERE id = '$_POST[deleteStash]'";
-                $pdo->exec($sql);
+                mysqli_query($pdo, $sql);
             } catch (PDOException $e) {
                 echo $sql . '<br>' . $e->getMessage();
             }

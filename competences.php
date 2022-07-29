@@ -75,10 +75,10 @@
 
         try {
             // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-            $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // $pdo = new PDO($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db());
+            // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "DELETE FROM skill WHERE speciality = '$_POST[delete]'";
-            $pdo->exec($sql);
+            mysqli_query($pdo, $sql);
         } catch (PDOException $e) {
             echo $sql . '<br>' . $e->getMessage();
         }

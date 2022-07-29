@@ -155,12 +155,12 @@
 
             try {
                 // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
+                // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql = "DELETE FROM contacts WHERE id = '$_POST[deleteContact]'";
                 $sql1 = "DELETE FROM missioncontact WHERE contact_id = '$_POST[deleteContact]'";
-                $pdo->exec($sql1);
-                $pdo->exec($sql);
+                mysqli_query($pdo, $sql1);
+                mysqli_query($pdo, $sql);
             } catch (PDOException $e) {
                 echo $sql . '<br>' . $e->getMessage();
             }
