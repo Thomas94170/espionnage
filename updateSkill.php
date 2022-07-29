@@ -47,7 +47,7 @@
                 <label for="maj"> Compétence : </label>
                 <input type="text" name="maj" id="maj" required <?php
                                                                 foreach (mysqli_query($pdo, "SELECT * FROM skill WHERE id = '$_GET[update]'") as $skill) {
-                                                                    echo 'value="' . $skill['name'] . '" ';
+                                                                    echo 'value="' . $skill['speciality'] . '" ';
                                                                 }
 
                                                                 ?>>
