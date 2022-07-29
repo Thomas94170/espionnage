@@ -47,7 +47,7 @@
 
         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO skill (`speciality`) VALUES ('$_POST[speciality]')";
+        $sql = "INSERT INTO skill (speciality) VALUES ('$_POST[speciality]')";
         mysqli_query($pdo, $sql);
         echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
