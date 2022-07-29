@@ -74,7 +74,7 @@
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         if (!isset($_POST['maj'])) {
             foreach (mysqli_query($pdo, "SELECT * FROM skill WHERE id = '$_GET[update]'") as $skill) {
-                $sql = "UPDATE skill SET name = $skill[speciality] WHERE id = '$_GET[update]'";
+                $sql = "UPDATE skill SET speciality = $skill[speciality] WHERE id = '$_GET[update]'";
             }
         } else {
             $sql = "UPDATE skill SET speciality = '$_POST[maj]' WHERE id = $_GET[update]";
