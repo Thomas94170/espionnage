@@ -72,7 +72,14 @@
     try {
         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE skill SET speciality = '$_POST[maj]' WHERE id = $_GET[update]";
+        if (!isset($_POST['maj'])) {
+            foreach (mysqli_query($pdo, "SELECT * FROM skill WHERE id = '$_GET[update]'") as $skill) {
+                $sql = "UPDATE skill SET name = $skill[speciality] WHERE id = '$_GET[update]'";
+            }
+        } else {
+            $sql = "UPDATE skill SET speciality = '$_POST[maj]' WHERE id = $_GET[update]";
+        }
+
         mysqli_query($pdo, $sql);
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
