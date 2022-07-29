@@ -45,7 +45,7 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="maj"> Compétence : </label>
-                <input type="text" name="maj" id="maj" required>
+                <input type="text" name="maj" id="maj" required value=<? $_GET['update'] ?>>
                 <br><br>
                 <input type="submit" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
