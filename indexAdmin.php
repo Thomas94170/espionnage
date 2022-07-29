@@ -52,8 +52,8 @@
 
 
             try {
-                $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                foreach ($conn->query('SELECT * FROM missions') as $mission) {
+                $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                foreach (mysqli_query($pdo, 'SELECT * FROM missions') as $mission) {
                     echo "<br>";
                     echo "<br>";
                     // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
@@ -68,21 +68,21 @@
                     echo "Date de début: " . $mission['startDate'];
                     echo "<br>";
                     echo "Date de fin: " . $mission['endDate'] . '<br>';
-                    foreach ($conn->query("SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
-                        foreach ($conn->query("SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
+                    foreach (mysqli_query($pdo, "SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
+                        foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
                             echo "Agent traitant: " . $agent['name'] . '<br>';
                         }
                     }
-                    foreach ($conn->query("SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
-                        foreach ($conn->query("SELECT * FROM contacts WHERE id = $missioncontact[contact_id]") as $contact) {
+                    foreach (mysqli_query($pdo, "SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
+                        foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = $missioncontact[contact_id]") as $contact) {
                             echo "Contact : " . $contact['name'] . '<br>';
                         }
                     }
-                    foreach ($conn->query("SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
+                    foreach (mysqli_query($pdo, "SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
                         echo "Cible: " . $target['name'] . '<br>';
                     }
-                    foreach ($conn->query("SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
-                        foreach ($conn->query("SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
+                    foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
+                        foreach (mysqli_query($pdo, "SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
                             echo "Etat de la mission : " . $status['conditions'] . '<br>';
                         }
                     }
