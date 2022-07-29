@@ -41,7 +41,7 @@
                             <?php
                             $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
                             // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-                            foreach ($pdo->query('SELECT * FROM country') as $country) {
+                            foreach (mysqli_query($pdo, 'SELECT * FROM country') as $country) {
                                 $checked = [];
                                 if (isset($_GET['country'])) {
                                     $checked = $_GET['country'];
@@ -96,7 +96,7 @@
                             }
                         }
                     }
-                    foreach ($pdo->query($sql) as $mission) {
+                    foreach (mysqli_query($pdo, $sql) as $mission) {
                         echo "<div class='border border-black bg-gradient-to-r from-gray-400 to-black-500 hover:from-black-500 hover:to-gray-400'>";
                         echo "<br>";
                         // echo "Mission: " . $mission['title'] . ' Description: ' . $mission['description'] . '';
@@ -111,21 +111,21 @@
                         echo "Start: " . $mission['startDate'];
                         echo "<br>";
                         echo "End: " . $mission['endDate'] . '<br>';
-                        foreach ($pdo->query("SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
-                            foreach ($pdo->query("SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
+                        foreach (mysqli_query($pdo, "SELECT * FROM missionagent WHERE mission_id = $mission[id]") as $missionagent) {
+                            foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = $missionagent[agent_id]") as $agent) {
                                 echo "Processing Agent: " . $agent['name'] . '<br>';
                             }
                         }
-                        foreach ($pdo->query("SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
-                            foreach ($pdo->query("SELECT * FROM contacts WHERE id = $missioncontact[contact_id]") as $contact) {
+                        foreach (mysqli_query($pdo, "SELECT * FROM missioncontact WHERE mission_id = $mission[id]") as $missioncontact) {
+                            foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = $missioncontact[contact_id]") as $contact) {
                                 echo "Contact : " . $contact['name'] . '<br>';
                             }
                         }
-                        foreach ($pdo->query("SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
+                        foreach (mysqli_query($pdo, "SELECT * FROM targets WHERE mission_id = $mission[id]") as $target) {
                             echo "Target: " . $target['name'] . '<br>';
                         }
-                        foreach ($pdo->query("SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
-                            foreach ($pdo->query("SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
+                        foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE id = $mission[id]") as $missionstatus) {
+                            foreach (mysqli_query($pdo, "SELECT * FROM status WHERE id = $missionstatus[status_id]") as $status) {
                                 echo "Mission Status : " . $status['conditions'] . '<br>';
                             }
                         }
