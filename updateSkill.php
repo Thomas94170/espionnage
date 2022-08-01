@@ -77,7 +77,7 @@
                 $sql = "UPDATE skill SET speciality = $skill[speciality] WHERE id = '$_GET[update]'";
             }
         } else {
-            $sql = "UPDATE skill SET speciality = '$_POST[maj]' WHERE id = $_GET[update]";
+            $sql = "UPDATE skill SET speciality = '$_POST[maj]' WHERE id = '$_GET[update]'";
         }
 
         mysqli_query($pdo, $sql);
