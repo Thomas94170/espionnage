@@ -127,9 +127,34 @@
     try {
         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE agents SET name ='$_POST[majName]',firstname = '$_POST[majFirstname]',date_of_birth = '$_POST[majDob]',authentificationCode = '$_POST[majCode]',nationality_id = '$_POST[majNat]' WHERE id = '$_GET[update]'";
-        $sqlSkill = "UPDATE skillagent SET skill_id =  '$_POST[skill_id]";
-        mysqli_query($pdo, $sql);
+        // $sql = "UPDATE agents SET name ='$_POST[majName]',firstname = '$_POST[majFirstname]',date_of_birth = '$_POST[majDob]',authentificationCode = '$_POST[majCode]',nationality_id = '$_POST[majNat]' WHERE id = '$_GET[update]'";
+        // $sqlSkill = "UPDATE skillagent SET skill_id =  '$_POST[skill_id]";
+        // mysqli_query($pdo, $sql);
+
+        if (!isset($_POST['majName'])) {
+            foreach (mysqli_query($pdo, "SELECT * FROM agent WHERE id = '$_GET[modify]'") as $agent) {
+                $sql = "UPDATE agent SET 
+              last_name = $agent[last_name],
+              first_name = $agent[first_name],
+              birth_date = $agent[birth_date],
+              code_id = $agent[code_id],
+              nationality_id = $agent[nationality_id]
+              WHERE id = '$_GET[modify]'";
+            }
+        } else {
+            $sql = "UPDATE agent SET 
+            last_name = '$_POST[last_name]', 
+            first_name = '$_POST[first_name]', 
+            birth_date = '$_POST[birth_date]', 
+            code_id = '$_POST[code_id]', 
+            nationality_id = '$_POST[nationality]' 
+            WHERE id = '$_GET[modify]'";
+            foreach (mysqli_query($pdo, ("SELECT * from agent WHERE last_name = '$_POST[last_name]'")) as $agent) {
+                $sql2 = "UPDATE agent_skill SET skill_id = '$_POST[skill]' WHERE agent_id = '$agent[id]'";
+            }
+            mysqli_query($pdo, $sql);
+            mysqli_query($pdo, $sql2);
+        }
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
