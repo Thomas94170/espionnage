@@ -107,7 +107,7 @@
                 <!-- <label for="majNat"> Nationality : </label> -->
                 <!-- <input type="number" name="majNat" id="majNat" required> -->
                 <br><br>
-                <input type="submit" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" name="upd" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
 
         </div>
@@ -131,26 +131,26 @@
         // $sqlSkill = "UPDATE skillagent SET skill_id =  '$_POST[skill_id]";
         // mysqli_query($pdo, $sql);
 
-        if (!isset($_POST['majName'])) {
-            foreach (mysqli_query($pdo, "SELECT * FROM agent WHERE id = '$_GET[modify]'") as $agent) {
-                $sql = "UPDATE agent SET 
-              last_name = $agent[last_name],
-              first_name = $agent[first_name],
-              birth_date = $agent[birth_date],
-              code_id = $agent[code_id],
-              nationality_id = $agent[nationality_id]
-              WHERE id = '$_GET[modify]'";
+        if (!isset($_POST['upd'])) {
+            foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = '$_GET[update]'") as $agent) {
+                $sql = "UPDATE agents SET 
+              name = $agent[name],
+              firstname = $agent[firstname],
+              date_of_birth = $agent[date_of_birth],
+              authentificationCode = $agent[authentificationCode],
+              nationality = $agent[nationality_id]
+              WHERE id = '$_GET[update]'";
             }
         } else {
-            $sql = "UPDATE agent SET 
-            last_name = '$_POST[last_name]', 
-            first_name = '$_POST[first_name]', 
-            birth_date = '$_POST[birth_date]', 
-            code_id = '$_POST[code_id]', 
-            nationality_id = '$_POST[nationality]' 
-            WHERE id = '$_GET[modify]'";
-            foreach (mysqli_query($pdo, ("SELECT * from agent WHERE last_name = '$_POST[last_name]'")) as $agent) {
-                $sql2 = "UPDATE agent_skill SET skill_id = '$_POST[skill]' WHERE agent_id = '$agent[id]'";
+            $sql = "UPDATE agents SET 
+            name = '$_POST[majName]', 
+            firstname = '$_POST[majFirstname]', 
+            date_of_birth = '$_POST[majDob]', 
+            authentificationCode = '$_POST[majCode]', 
+            nationality = '$_POST[majNat]' 
+            WHERE id = '$_GET[update]'";
+            foreach (mysqli_query($pdo, ("SELECT * from agents WHERE name = '$_POST[name]'")) as $agent) {
+                $sql2 = "UPDATE skillagent SET skill_id = '$_POST[speciality]' WHERE agent_id = '$agent[id]'";
             }
             mysqli_query($pdo, $sql);
             mysqli_query($pdo, $sql2);

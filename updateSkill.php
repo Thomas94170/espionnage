@@ -52,7 +52,7 @@
 
                                                                 ?>>
                 <br><br>
-                <input type="submit" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" name="upd" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
 
         </div>
@@ -72,7 +72,7 @@
     try {
         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        if (!isset($_POST['maj'])) {
+        if (!isset($_POST['upd'])) {
             foreach (mysqli_query($pdo, "SELECT * FROM skill WHERE id = '$_GET[update]'") as $skill) {
                 $sql = "UPDATE skill SET speciality = $skill[speciality] WHERE id = '$_GET[update]'";
             }
