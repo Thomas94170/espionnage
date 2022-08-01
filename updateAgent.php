@@ -30,7 +30,7 @@
         echo $sql . '<br>' . $e->getMessage();
     }
 
-    $pdo = null;
+
     ?>
 
     <?php
@@ -45,13 +45,33 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="majName"> Name : </label>
-                <input type="text" name="majName" id="majName" required>
+                <input type="text" name="majName" id="majName" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = '$_GET[update]'") as $agent) {
+                                                                            echo 'value="' . $agent['name'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majFirstname"> Firstname : </label>
-                <input type="text" name="majFirstname" id="majFirstname" required>
+                <input type="text" name="majFirstname" id="majFirstname" required <?php
+                                                                                    foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = '$_GET[update]'") as $agent) {
+                                                                                        echo 'value="' . $agent['firstname'] . '" ';
+                                                                                    }
+
+                                                                                    ?>>
                 <label for="majDob"> Date of birth : </label>
-                <input type="date" name="majDob" id="majDob" required>
+                <input type="date" name="majDob" id="majDob" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = '$_GET[update]'") as $agent) {
+                                                                            echo 'value="' . $agent['date_of_birth'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majCode"> Code : </label>
-                <input type="text" name="majCode" id="majCode" required>
+                <input type="text" name="majCode" id="majCode" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = '$_GET[update]'") as $agent) {
+                                                                            echo 'value="' . $agent['authentificationCode'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <select name="majNat" id="">
                     <?php
                     try {

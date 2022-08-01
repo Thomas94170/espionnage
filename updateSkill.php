@@ -85,7 +85,7 @@
         echo $sql . '<br>' . $e->getMessage();
     }
 
-    $pdo = null;
+    // $pdo = null;
 
     ?>
 </body>

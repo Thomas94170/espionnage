@@ -27,21 +27,21 @@
                 <label for="majCode"> Code : </label>
                 <input type="text" name="majCode" id="majCode" required <?php
                                                                         foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
-                                                                            echo 'value="' . $stash['code'] . '" ';
+                                                                            echo 'value="' . $stash['majCode'] . '" ';
                                                                         }
 
                                                                         ?>>
                 <label for="majAddress"> Address : </label>
                 <input type="text" name="majAddress" id="majAddress" required <?php
                                                                                 foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
-                                                                                    echo 'value="' . $stash['address'] . '" ';
+                                                                                    echo 'value="' . $stash['majAddress'] . '" ';
                                                                                 }
 
                                                                                 ?>>
                 <label for="majType"> Type : </label>
                 <input type="text" name="majType" id="majType" required <?php
                                                                         foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
-                                                                            echo 'value="' . $stash['type'] . '" ';
+                                                                            echo 'value="' . $stash['majType'] . '" ';
                                                                         }
 
                                                                         ?>>
