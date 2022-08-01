@@ -27,21 +27,21 @@
                 <label for="majCode"> Code : </label>
                 <input type="text" name="majCode" id="majCode" required <?php
                                                                         foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
-                                                                            echo 'value="' . $stash['majCode'] . '" ';
+                                                                            echo 'value="' . $stash['code'] . '" ';
                                                                         }
 
                                                                         ?>>
                 <label for="majAddress"> Address : </label>
                 <input type="text" name="majAddress" id="majAddress" required <?php
                                                                                 foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
-                                                                                    echo 'value="' . $stash['majAddress'] . '" ';
+                                                                                    echo 'value="' . $stash['address'] . '" ';
                                                                                 }
 
                                                                                 ?>>
                 <label for="majType"> Type : </label>
                 <input type="text" name="majType" id="majType" required <?php
                                                                         foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
-                                                                            echo 'value="' . $stash['majType'] . '" ';
+                                                                            echo 'value="' . $stash['type'] . '" ';
                                                                         }
 
                                                                         ?>>
@@ -110,18 +110,18 @@
         if (!isset($_POST['upd'])) {
             foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $skill) {
                 $sql = "UPDATE stash SET
-                 code = $stash[majCode]
-                 address = $stash[majAddress]
-                 type = $stash[majType]
-                 country = $stash[majCountry]
+                 code = $stash[majCode],
+                 address = $stash[majAddress],
+                 type = $stash[majType],
+                 country = $stash[majCountry],
                   WHERE id = '$_GET[update]'";
             }
         } else {
             $sql = "UPDATE stash SET
-            code = $stash[majCode]
-            address = $stash[majAddress]
-            type = $stash[majType]
-            country = $stash[majCountry]
+            code = '$_POST[majCode]',
+            address = '$_POST[majAddress]',
+            type = '$_POST[majType]',
+            country = '$_POST[majCountry]',
              WHERE id = '$_GET[update]'";
         }
         $sql1 = "UPDATE stash SET code ='$_POST[majCode]',address = '$_POST[majAddress]',type = '$_POST[majType]',country_id = '$_POST[majCountry]',mission_id = '$_POST[majMis]'  WHERE id = '$_GET[update]'";
