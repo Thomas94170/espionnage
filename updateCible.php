@@ -127,7 +127,7 @@
 
         if (!isset($_POST['upd'])) {
             foreach (mysqli_query($pdo, "SELECT * FROM targets WHERE id = '$_GET[update]'") as $target) {
-                $sql = "UPDATE target SET 
+                $sql = "UPDATE targets SET 
               name = $target[name],
               firstname = $target[firstname],
               date_of_birth = $target[date_of_birth],
@@ -137,7 +137,7 @@
               WHERE id = '$_GET[update]'";
             }
         } else {
-            $sql = "UPDATE target SET 
+            $sql = "UPDATE targets SET 
             name = '$_POST[majName]', 
             firstname = '$_POST[majFirstname]', 
             date_of_birth = '$_POST[majDob]', 
