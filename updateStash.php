@@ -25,11 +25,26 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="majCode"> Code : </label>
-                <input type="text" name="majCode" id="majCode" required>
+                <input type="text" name="majCode" id="majCode" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
+                                                                            echo 'value="' . $stash['code'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majAddress"> Address : </label>
-                <input type="text" name="majAddress" id="majAddress" required>
+                <input type="text" name="majAddress" id="majAddress" required <?php
+                                                                                foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
+                                                                                    echo 'value="' . $stash['address'] . '" ';
+                                                                                }
+
+                                                                                ?>>
                 <label for="majType"> Type : </label>
-                <input type="text" name="majType" id="majType" required>
+                <input type="text" name="majType" id="majType" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
+                                                                            echo 'value="' . $stash['type'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majCountry"> Country : </label>
                 <select name="majCountry" id="">
                     <?php
