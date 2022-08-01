@@ -86,7 +86,7 @@
     try {
         // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO targets (`name`,`firstname`,`date_of_birth`,`codeName`,`nationality_id`,`mission_id`) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]', '$_POST[mission_id]')";
+        $sql = "INSERT INTO targets (name,firstname,date_of_birth,codeName,nationality_id,mission_id`) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]', '$_POST[mission_id]')";
         mysqli_query($pdo, $sql);
         echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
