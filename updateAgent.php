@@ -150,7 +150,7 @@
             nationality = '$_POST[majNat]' 
             WHERE id = '$_GET[update]'";
             foreach (mysqli_query($pdo, ("SELECT * from agents WHERE name = '$_POST[name]'")) as $agent) {
-                $sql2 = "UPDATE skillagent SET skill_id = '$_POST[speciality]' WHERE agent_id = '$agent[id]'";
+                $sql2 = "UPDATE skillagent SET skill_id = '$_POST[skill_id]' WHERE agent_id = '$agent[id]'";
             }
             mysqli_query($pdo, $sql);
             mysqli_query($pdo, $sql2);
