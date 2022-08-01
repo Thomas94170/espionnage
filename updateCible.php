@@ -30,7 +30,7 @@
         echo $sql . '<br>' . $e->getMessage();
     }
 
-    $pdo = null;
+    // $pdo = null;
     ?>
 
     <?php
@@ -45,11 +45,26 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="majName"> Name : </label>
-                <input type="text" name="majName" id="majName" required>
+                <input type="text" name="majName" id="majName" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM targets WHERE id = '$_GET[update]'") as $target) {
+                                                                            echo 'value="' . $target['name'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majFirstname"> Firstname : </label>
-                <input type="text" name="majFirstname" id="majFirstname" required>
+                <input type="text" name="majFirstname" id="majFirstname" required <?php
+                                                                                    foreach (mysqli_query($pdo, "SELECT * FROM targets WHERE id = '$_GET[update]'") as $target) {
+                                                                                        echo 'value="' . $target['firstname'] . '" ';
+                                                                                    }
+
+                                                                                    ?>>
                 <label for="majDob"> Date of birth : </label>
-                <input type="date" name="majDob" id="majDob" required>
+                <input type="date" name="majDob" id="majDob" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM targets WHERE id = '$_GET[update]'") as $target) {
+                                                                            echo 'value="' . $target['date_of_birth'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majNat"> Nationality : </label>
                 <select name="majNat" id="">
                     <?php
