@@ -134,7 +134,7 @@
               date_of_birth = $target[date_of_birth],
               codeName = $target[codeName],
               nationality_id = $target[nationality_id],
-              mission_id = $target[mission_id]
+              mission_id = $target[mission_id],
               WHERE id = '$_GET[update]'";
             }
         } else {
