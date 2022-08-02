@@ -12,10 +12,7 @@
 
 <body>
 
-
     <?php
-    require_once('menu.php');
-    // require_once('sidebar.php');
     $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $cleardb_server = $cleardb_url["host"];
     $cleardb_username = $cleardb_url["user"];
@@ -25,6 +22,14 @@
     $query_builder = TRUE;
 
     $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
+    ?>
+
+
+    <?php
+    require_once('menu.php');
+    // require_once('sidebar.php');
+
     ?>
     <br>
     <h1 class="text-center text-white">Update</h1>
@@ -66,31 +71,27 @@
                     $active_group = 'default';
                     $query_builder = TRUE;
 
-                    try {
-                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        foreach (mysqli_query($pdo, 'SELECT * FROM country') as $country) {
+
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM country') as $country) {
 
 
-                            echo '<option value="' . $country['id'] . '">' . $country['name'] . '</option>';
-                        }
-                    } catch (PDOException $e) {
-                        echo "<p>Erreur connexion à la base de données </p>";
+                        echo '<option value="' . $country['id'] . '">' . $country['name'] . '</option>';
                     }
+
                     ?>
                 </select>
                 <label for="majMis"> Mission : </label>
                 <select name="majMis" id="">
                     <?php
-                    try {
-                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        foreach (mysqli_query($pdo, 'SELECT * FROM missions') as $mission) {
+
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM missions') as $mission) {
 
 
-                            echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
-                        }
-                    } catch (PDOException $e) {
-                        echo "<p>Erreur connexion à la base de données </p>";
+                        echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
                     }
+
                     ?>
                 </select>
                 <!-- <label for="majCountry"> Country : </label> -->
