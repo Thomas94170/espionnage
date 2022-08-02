@@ -44,31 +44,27 @@
                     $active_group = 'default';
                     $query_builder = TRUE;
 
-                    try {
-                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        foreach (mysqli_query($pdo, 'SELECT * FROM nationality') as $nationality) {
+
+                    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM nationality') as $nationality) {
 
 
-                            echo '<option value="' . $nationality['id'] . '">' . $nationality['name'] . '</option>';
-                        }
-                    } catch (PDOException $e) {
-                        echo "<p class='text-white'>Erreur connexion à la base de données </p>";
+                        echo '<option value="' . $nationality['id'] . '">' . $nationality['name'] . '</option>';
                     }
+
                     ?>
                 </select>
                 <label for="mission_id"> Mission : </label>
                 <select name="mission_id" id="mission_id">
                     <?php
-                    try {
-                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        foreach (mysqli_query($pdo, 'SELECT * FROM missions') as $mission) {
+
+                    // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+                    foreach (mysqli_query($pdo, 'SELECT * FROM missions') as $mission) {
 
 
-                            echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
-                        }
-                    } catch (PDOException $e) {
-                        echo "<p class='text-white'>Erreur connexion à la base de données </p>";
+                        echo '<option value="' . $mission['id'] . '">' . $mission['title'] . '</option>';
                     }
+
                     ?>
                 </select>
                 <!-- <label for="nationality_id"> Nationalité : </label> -->
@@ -76,7 +72,7 @@
                 <!-- <label for="mission_id"> Mission affectée : </label> -->
                 <!-- <input type="number" name="mission_id" id="mission_id" /> -->
                 <br><br>
-                <input type="submit" value="Add" name="add" class="hover:bg-sky-600 hover:text-slate-900" />
+                <button type="submit" value="Add" name="add" class="hover:bg-sky-600 hover:text-slate-900">Add</button>
 
         </div>
 
