@@ -75,7 +75,7 @@
                 <!-- <label for="mission_id"> Mission : </label> -->
                 <!-- <input type="number" name="mission_id" id="mission_id" required /> -->
                 <br><br>
-                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" name="add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 
@@ -83,21 +83,19 @@
     <?php
 
     try {
-        // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO stash (code,address,type,country_id,mission_id) VALUES ('$_POST[code]','$_POST[address]','$_POST[type]','$_POST[country_id]','$_POST[mission_id]')";
-        foreach (mysqli_query($pdo, "SELECT name FROM country WHERE id = '$_POST[country_id]'") as $country) {
-            foreach (mysqli_query($pdo, "SELECT country FROM missions WHERE id = '$_POST[mission_id]'") as $mission) {
-                if ($country['name'] != $mission['country']) {
-                    echo '<p class= "text-white text-center"><i class="fa-solid fa-triangle-exclamation"></i>Ajout Impossible, la planque doit être dans le pays de la mission';
-                } else {
-                    mysqli_query($pdo, $sql);
-                    echo '<p class="text-center text-white"><i class="fa-solid fa-clipboard-check"></i>Add in database</p>';
+        if (isset($_POST['add'])) {
+            $sql = "INSERT INTO stash (code,address,type,country_id,mission_id) VALUES ('$_POST[code]','$_POST[address]','$_POST[type]','$_POST[country_id]','$_POST[mission_id]')";
+            foreach (mysqli_query($pdo, "SELECT name FROM country WHERE id = '$_POST[country_id]'") as $country) {
+                foreach (mysqli_query($pdo, "SELECT country FROM missions WHERE id = '$_POST[mission_id]'") as $mission) {
+                    if ($country['name'] != $mission['country']) {
+                        echo '<p class= "text-white text-center"><i class="fa-solid fa-triangle-exclamation"></i>Ajout Impossible, la planque doit être dans le pays de la mission';
+                    } else {
+                        mysqli_query($pdo, $sql);
+                        echo '<p class="text-center text-white"><i class="fa-solid fa-clipboard-check"></i>Add in database</p>';
+                    }
                 }
             }
         }
-        // $pdo->exec($sql);
-        // echo "<p class='text-center text-white'>Ajouté à la base de données</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
