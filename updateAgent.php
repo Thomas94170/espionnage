@@ -87,13 +87,13 @@
                     ?>
                 </select>
                 <label for="skill"> Skill : </label>
-                <select name="skill_id" id="">
+                <select name="skill_id" id="skill_id">
                     <br>
                     <?php
                     try {
                         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
                         foreach (mysqli_query($pdo, 'SELECT * FROM skill') as $skill) {
-                            echo '<option value="' . $skillAgent['id'] . '">' . $skill['speciality'] . '</option>';
+                            echo '<option value="' . $skill['id'] . '">' . $skill['speciality'] . '</option>';
 
                             // echo '<input type="radio" class="checked:bg-blue-500" name="nationality_id" value= "' . $nationality['id'] . '" />';
                             // echo $nationality['name'];
