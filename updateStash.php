@@ -116,26 +116,24 @@
     try {
         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // if (!isset($_POST['upd'])) {
-        //     foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
-        //         $sql = "UPDATE stash SET
-        //          code = $stash[majCode],
-        //          address = $stash[majAddress],
-        //          type = $stash[majType],
-        //          country = $stash[majCountry]
-        //           WHERE id = '$_GET[update]'";
-        //     }
-        // } else {
-        $sql = "UPDATE stash SET
+        if (!isset($_POST['upd'])) {
+            foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
+                $sql = "UPDATE stash SET
+                 code = $stash[majCode],
+                 address = $stash[majAddress],
+                 type = $stash[majType],
+                 country = $stash[majCountry]
+                  WHERE id = '$_GET[update]'";
+            }
+        } else {
+            $sql = "UPDATE stash SET
             code = '$_POST[majCode]',
             address = '$_POST[majAddress]',
             type = '$_POST[majType]',
             country = '$_POST[majCountry]'
              WHERE id = '$_GET[update]'";
-        // }
-        $sql1 = "UPDATE stash SET code ='$_POST[majCode]',address = '$_POST[majAddress]',type = '$_POST[majType]',country_id = '$_POST[majCountry]',mission_id = '$_POST[majMis]'  WHERE id = '$_GET[update]'";
-        mysqli_query($pdo, $sql);
-        mysqli_query($pdo, $sql1);
+            mysqli_query($pdo, $sql);
+        }
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
