@@ -24,6 +24,7 @@
     $active_group = 'default';
     $query_builder = TRUE;
 
+    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     ?>
     <br>
     <h1 class="text-center text-white">New Skill</h1>
@@ -35,7 +36,7 @@
                 <label for="speciality"> Skill : </label>
                 <input type="text" name="speciality" id="speciality" required>
                 <br><br>
-                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" name="add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 
@@ -45,12 +46,14 @@
 
 
     try {
+        // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+        if (isset($_POST['add'])) {
 
-        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO skill (speciality) VALUES ('$_POST[speciality]')";
-        mysqli_query($pdo, $sql);
-        echo "<p class='text-center text-white'>Add in database</p>";
+            // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO skill (speciality) VALUES ('$_POST[speciality]')";
+            mysqli_query($pdo, $sql);
+            echo "<p class='text-center text-white'>Add in database</p>";
+        }
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
