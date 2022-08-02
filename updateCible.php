@@ -24,7 +24,7 @@
     try {
         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM contacts";
+        $sql = "SELECT * FROM targets";
         mysqli_query($pdo, $sql);
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
