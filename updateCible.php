@@ -134,7 +134,7 @@
               date_of_birth = $target[date_of_birth],
               codeName = $target[codeName],
               nationality_id = $target[nationality_id],
-              mission_id = $target[mission_id],
+              mission_id = $target[mission_id]
               WHERE id = '$_GET[update]'";
             }
         } else {
@@ -144,7 +144,7 @@
             date_of_birth = '$_POST[majDob]', 
             codeName = '$_POST[majCode]', 
             nationality_id = '$_POST[majNat]',
-            mission_id = '$_POST[majMis]',
+            mission_id = '$_POST[majMis]'
             WHERE id = '$_GET[update]'";
             foreach (mysqli_query($pdo, ("SELECT * from missionagent WHERE mission_id = '$_POST[majMis]'")) as $mission) {
                 foreach (mysqli_query($pdo, "SELECT * FROM agent WHERE id = '$mission[agent_id]'") as $agent) {
