@@ -81,7 +81,7 @@
                 <!-- <label for="nationality_id"> Nationalité : </label> -->
                 <!-- <input type="number" name="nationality_id" id="nationality_id" required /> -->
                 <br><br>
-                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" name="add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 
@@ -89,14 +89,16 @@
     <?php
 
     try {
-        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
-        mysqli_query($pdo, $sql);
-        foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE name = '$_POST[name]'") as $agents) {
-            mysqli_query($pdo, "INSERT INTO skillagent (skill_id, agent_id) VALUES ('$_POST[skill_id]','$agents[id]')");
+        if (isset($_POST['add'])) {
+            $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+            // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO agents (name, firstname, date_of_birth, authentificationCode, nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[authentificationCode]','$_POST[nationality_id]')";
+            mysqli_query($pdo, $sql);
+            foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE name = '$_POST[name]'") as $agents) {
+                mysqli_query($pdo, "INSERT INTO skillagent (skill_id, agent_id) VALUES ('$_POST[skill_id]','$agents[id]')");
+            }
+            echo "<p class='text-center text-white'>Add in database</p>";
         }
-        echo "<p class='text-center text-white'>Add in database</p>";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
