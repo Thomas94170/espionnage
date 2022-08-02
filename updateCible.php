@@ -21,22 +21,22 @@
     $active_group = 'default';
     $query_builder = TRUE;
 
-    // try {
-    //     $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-    //     // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     $sql = "SELECT * FROM targets";
-    //     mysqli_query($pdo, $sql);
-    // } catch (PDOException $e) {
-    //     echo $sql . '<br>' . $e->getMessage();
-    // }
+    try {
+        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM targets";
+        mysqli_query($pdo, $sql);
+    } catch (PDOException $e) {
+        echo $sql . '<br>' . $e->getMessage();
+    }
 
-    // $pdo = null;
+
     ?>
 
     <?php
     require_once('menu.php');
     // require_once('sidebar.php');
-    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+    // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     ?>
     <br>
     <h1 class="text-center text-white">Update</h1>
