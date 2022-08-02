@@ -21,14 +21,10 @@
     $active_group = 'default';
     $query_builder = TRUE;
 
-    try {
-        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM targets";
-        mysqli_query($pdo, $sql);
-    } catch (PDOException $e) {
-        echo $sql . '<br>' . $e->getMessage();
-    }
+
+    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
+
 
 
     ?>
@@ -120,7 +116,7 @@
     <?php
 
     try {
-        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+        // $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // $sql = "UPDATE agents SET name ='$_POST[majName]',firstname = '$_POST[majFirstname]',date_of_birth = '$_POST[majDob]',authentificationCode = '$_POST[majCode]',nationality_id = '$_POST[majNat]' WHERE id = '$_GET[update]'";
         // $sqlSkill = "UPDATE skillagent SET skill_id =  '$_POST[skill_id]";
