@@ -62,7 +62,7 @@
                 <!-- <label for="nationality_id"> Nationalité : </label> -->
                 <!-- <input type="number" name="nationality_id" id="nationality_id" required /> -->
                 <br><br>
-                <input type="submit" value="Add" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Add" name="add" class="hover:bg-sky-600 hover:text-slate-900" />
 
         </div>
 
@@ -70,11 +70,11 @@
     <?php
 
     try {
-        // $pdo = new PDO('mysql:host=localhost;dbname=espionstudi', 'root', '');
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO contacts (name,firstname,date_of_birth,codeName,nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]')";
-        mysqli_query($pdo, $sql);
-        echo "<p class='text-center text-white'>Add in database</p>";
+        if (isset($_POST['add'])) {
+            $sql = "INSERT INTO contacts (name,firstname,date_of_birth,codeName,nationality_id) VALUES ('$_POST[name]', '$_POST[firstname]', '$_POST[date_of_birth]', '$_POST[codeName]', '$_POST[nationality_id]')";
+            mysqli_query($pdo, $sql);
+            echo "<p class='text-center text-white'>Add in database</p>";
+        }
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }

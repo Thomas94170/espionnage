@@ -30,7 +30,7 @@
         echo $sql . '<br>' . $e->getMessage();
     }
 
-    $pdo = null;
+
     ?>
 
     <?php
@@ -45,13 +45,33 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="majName"> Name : </label>
-                <input type="text" name="majName" id="majName" required>
+                <input type="text" name="majName" id="majName" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = '$_GET[update]'") as $contact) {
+                                                                            echo 'value="' . $contact['name'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majFirstname"> Firstname : </label>
-                <input type="text" name="majFirstname" id="majFirstname" required>
+                <input type="text" name="majFirstname" id="majFirstname" required <?php
+                                                                                    foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = '$_GET[update]'") as $contact) {
+                                                                                        echo 'value="' . $contact['firstname'] . '" ';
+                                                                                    }
+
+                                                                                    ?>>
                 <label for="majDob"> Date of birth : </label>
-                <input type="date" name="majDob" id="majDob" required>
+                <input type="date" name="majDob" id="majDob" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = '$_GET[update]'") as $contact) {
+                                                                            echo 'value="' . $contact['date_of_birth'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majCode"> Code : </label>
-                <input type="text" name="majCode" id="majCode" required>
+                <input type="text" name="majCode" id="majCode" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = '$_GET[update]'") as $contact) {
+                                                                            echo 'value="' . $contact['codeName'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majNat"> Nationality : </label>
                 <select name="majNat" id="">
                     <?php
@@ -70,7 +90,7 @@
                 <!-- <label for="majNat"> Nationality : </label> -->
                 <!-- <input type="number" name="majNat" id="majNat" required> -->
                 <br><br>
-                <input type="submit" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
+                <input type="submit" value="Confirm" name="upd" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
 
         </div>
@@ -88,10 +108,30 @@
     <?php
 
     try {
-        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+        if (isset($_POST['upd'])) {
+            foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = '$_GET[update]'") as $contact) {
+                $sql = "UPDATE contacts SET 
+              name = $contact[name],
+              firstname = $contact[firstname],
+              date_of_birth = $contact[date_of_birth],
+              authentificationCode = $contact[authentificationCode],
+              nationality_id = $contact[nationality_id]
+              WHERE id = '$_GET[update]'";
+            }
+        } else {
+            $sql = "UPDATE contacts SET name ='$_POST[majName]',
+            firstname = '$_POST[majFirstname]',
+            date_of_birth = '$_POST[majDob]',
+            codeName = '$_POST[majCode]',
+            nationality_id = '$_POST[majNat]'
+              WHERE id = '$_GET[update]'";
+            mysqli_query($pdo, $sql);
+        }
+
+
         // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE contacts SET name ='$_POST[majName]',firstname = '$_POST[majFirstname]',date_of_birth = '$_POST[majDob]',codeName = '$_POST[majCode]',nationality_id = '$_POST[majNat]'  WHERE id = '$_GET[update]'";
-        mysqli_query($pdo, $sql);
+
+
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
