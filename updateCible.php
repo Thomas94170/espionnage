@@ -82,7 +82,7 @@
                     ?>
                 </select>
                 <label for="majMis"> Mission : </label>
-                <select name="majMis" id="">
+                <select name="majMis" id="majMis">
                     <?php
                     try {
                         $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
@@ -144,7 +144,7 @@
             date_of_birth = '$_POST[majDob]', 
             codeName = '$_POST[majCode]', 
             nationality_id = '$_POST[majNat]',
-            mission_id = $_POST[majMis],
+            mission_id = '$_POST[majMis]',
             WHERE id = '$_GET[update]'";
             foreach (mysqli_query($pdo, ("SELECT * from missionagent WHERE mission_id = '$_POST[majMis]'")) as $mission) {
                 foreach (mysqli_query($pdo, "SELECT * FROM agent WHERE id = '$mission[agent_id]'") as $agent) {
