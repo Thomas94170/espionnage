@@ -146,7 +146,7 @@
             nationality_id = '$_POST[majNat]',
             mission_id = $_POST[majMis],
             WHERE id = '$_GET[update]'";
-            foreach (mysqli_query($pdo, ("SELECT * from missions WHERE title = '$_POST[title]'")) as $mission) {
+            foreach (mysqli_query($pdo, ("SELECT * from missionagent WHERE mission_id = '$_POST[majMis]'")) as $mission) {
                 foreach (mysqli_query($pdo, "SELECT * FROM missionagent WHERE id = '$mission[agent_id]'") as $agent) {
                     if ($_POST['majMis'] == $agent['nationality_id']) {
                         break;
