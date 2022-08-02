@@ -132,7 +132,7 @@
               firstname = $target[firstname],
               date_of_birth = $target[date_of_birth],
               codeName = $target[codeName],
-              nationality = $target[nationality_id],
+              nationality_id = $target[nationality_id],
               mission_id = $target[mission_id]
               WHERE id = '$_GET[update]'";
             }
@@ -142,11 +142,11 @@
             firstname = '$_POST[majFirstname]', 
             date_of_birth = '$_POST[majDob]', 
             codeName = '$_POST[majCode]', 
-            nationality = '$_POST[majNat]',
+            nationality_id = '$_POST[majNat]',
             mission_id = $_POST[majMis],
             WHERE id = '$_GET[update]'";
             foreach (mysqli_query($pdo, ("SELECT * from missions WHERE title = '$_POST[title]'")) as $mission) {
-                foreach (mysqli_query($pdo, "SELECT * FROM agents WHERE id = '$mission[agent_id]'") as $agent) {
+                foreach (mysqli_query($pdo, "SELECT * FROM missionagent WHERE id = '$mission[agent_id]'") as $agent) {
                     if ($_POST['majMis'] == $agent['nationality_id']) {
                         break;
                     } else {
