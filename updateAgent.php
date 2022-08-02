@@ -138,7 +138,7 @@
               firstname = $agent[firstname],
               date_of_birth = $agent[date_of_birth],
               authentificationCode = $agent[authentificationCode],
-              nationality = $agent[nationality_id]
+              nationality_id = $agent[nationality_id]
               WHERE id = '$_GET[update]'";
             }
         } else {
@@ -147,7 +147,7 @@
             firstname = '$_POST[majFirstname]', 
             date_of_birth = '$_POST[majDob]', 
             authentificationCode = '$_POST[majCode]', 
-            nationality = '$_POST[majNat]' 
+            nationality_id = '$_POST[majNat]' 
             WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
             foreach (mysqli_query($pdo, ("SELECT * from agents WHERE name = '$_POST[majName]'")) as $agent) {
