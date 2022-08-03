@@ -133,7 +133,7 @@
                     <!-- <label for="majNat"> Nationality : </label> -->
                     <!-- <input type="number" name="majNat" id="majNat" required> -->
                     <br><br>
-                    <input type="submit" value="Confirm" class="hover:bg-sky-600 hover:text-slate-900" />
+                    <input type="submit" value="Confirm" name="upd" class="hover:bg-sky-600 hover:text-slate-900" />
             </form>
 
         </div>
@@ -151,14 +151,32 @@
     <?php
 
     try {
-        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE missions SET title ='$_POST[majTitle]',description = '$_POST[majDescription]',nameCode = '$_POST[majCode]',country = '$_POST[majCountry]',startDate = '$_POST[startDate]',endDate = '$_POST[endDate]' WHERE id = '$_GET[update]'";
-        mysqli_query($pdo, $sql);
-        foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
-            mysqli_query($pdo, "UPDATE missionagent SET agent_id ='$_POST[agent]' WHERE mission_id = '$mission[id]'");
-            mysqli_query($pdo, "UPDATE missioncontact SET contact_id ='$_POST[contact]', mission_id = '$mission[id]'");
+        if (!isset($_POST['upd'])) {
+            $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+            foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE id = '$_GET[update]'") as $mission) {
+                $sql = "UPDATE missions SET 
+              title = $mission[title],
+              description = $mission[description],
+              nameCode = $mission[nameCode],
+              country = $mission[country],
+              startDate = $mission[startDate],
+              endDate = $mission[endDate],
+                skill = $mission[skill_id],
+                status = $mission[status_id],
+                type = $mission[type_id]
+              WHERE id = '$_GET[update]'";
+            }
+        } else {
+
+
+            $sql = "UPDATE missions SET title ='$_POST[majTitle]',description = '$_POST[majDescription]',nameCode = '$_POST[majCode]',country = '$_POST[majCountry]',startDate = '$_POST[startDate]',endDate = '$_POST[endDate]' WHERE id = '$_GET[update]'";
+            mysqli_query($pdo, $sql);
+            foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
+                mysqli_query($pdo, "UPDATE missionagent SET agent_id ='$_POST[agent]' WHERE mission_id = '$mission[id]'");
+                mysqli_query($pdo, "UPDATE missioncontact SET contact_id ='$_POST[contact]', mission_id = '$mission[id]'");
+            }
         }
+
 
 
         // $sq3 = "UPDATE skill SET speciality ='$_POST[skill]' WHERE id = '$_GET[update]'";
