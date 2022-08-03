@@ -108,7 +108,7 @@
     <?php
 
     try {
-        if (isset($_POST['upd'])) {
+        if (!isset($_POST['upd'])) {
             foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = '$_GET[update]'") as $contact) {
                 $sql = "UPDATE contacts SET 
               name = $contact[name],
@@ -127,11 +127,6 @@
               WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
         }
-
-
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
