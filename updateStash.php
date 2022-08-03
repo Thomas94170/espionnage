@@ -133,7 +133,7 @@
             address = '$_POST[majAddress]',
             type = '$_POST[majType]',
             country_id = '$_POST[majCountry]',
-            mission_id ='$_POST[majMis]
+            mission_id ='$_POST[majMis]'
              WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
         }
