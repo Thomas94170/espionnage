@@ -181,6 +181,7 @@
                 echo "Erreur : le contact doit être du pays de la mission";
             }
             if ($skillagent['skill_id'] != $_POST['skill']) {
+                echo '<br>';
                 echo "Erreur : l'agent doit avoir la compétence requise";
             }
             $sql = "UPDATE missions SET
