@@ -30,7 +30,7 @@
         echo $sql . '<br>' . $e->getMessage();
     }
 
-    $pdo = null;
+
     ?>
 
     <?php
@@ -45,11 +45,26 @@
         <div class=" justify-self-center border border-black text-center bg-slate-100">
             <form action="#" method="POST">
                 <label for="majTitle"> Title : </label>
-                <input type="text" name="majTitle" id="majTitle" required>
+                <input type="text" name="majTitle" id="majTitle" required <?php
+                                                                            foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE id = '$_GET[update]'") as $mission) {
+                                                                                echo 'value="' . $mission['title'] . '" ';
+                                                                            }
+
+                                                                            ?>>
                 <label for="majDescription"> Description : </label>
-                <input type="text" name="majDescription" id="majDescription" required>
+                <input type="text" name="majDescription" id="majDescription" required <?php
+                                                                                        foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE id = '$_GET[update]'") as $mission) {
+                                                                                            echo 'value="' . $mission['description'] . '" ';
+                                                                                        }
+
+                                                                                        ?>>
                 <label for="majCode"> Code : </label>
-                <input type="text" name="majCode" id="majCode" required>
+                <input type="text" name="majCode" id="majCode" required <?php
+                                                                        foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE id = '$_GET[update]'") as $mission) {
+                                                                            echo 'value="' . $mission['nameCode'] . '" ';
+                                                                        }
+
+                                                                        ?>>
                 <label for="majCountry"> Country : </label>
                 <select name="majCountry" id="majCountry">
                     <?php
