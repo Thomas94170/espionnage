@@ -120,10 +120,11 @@
         if (!isset($_POST['upd'])) {
             foreach (mysqli_query($pdo, "SELECT * FROM stash WHERE id = '$_GET[update]'") as $stash) {
                 $sql = "UPDATE stash SET
-                 code = $stash[majCode],
-                 address = $stash[majAddress],
-                 type = $stash[majType],
-                 country = $stash[majCountry]
+                 code = $stash[code],
+                 address = $stash[address],
+                 type = $stash[type],
+                 country = $stash[country_id],
+                 mission_id = $stash[mission_id]
                   WHERE id = '$_GET[update]'";
             }
         } else {
@@ -131,7 +132,8 @@
             code = '$_POST[majCode]',
             address = '$_POST[majAddress]',
             type = '$_POST[majType]',
-            country = '$_POST[majCountry]'
+            country = '$_POST[majCountry]',
+            mission_id ='$_POST[majMis]
              WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
         }
