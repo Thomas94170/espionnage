@@ -123,7 +123,7 @@
                  code = $stash[code],
                  address = $stash[address],
                  type = $stash[type],
-                 country = $stash[country_id],
+                 country_id = $stash[country_id],
                  mission_id = $stash[mission_id]
                   WHERE id = '$_GET[update]'";
             }
@@ -132,7 +132,7 @@
             code = '$_POST[majCode]',
             address = '$_POST[majAddress]',
             type = '$_POST[majType]',
-            country = '$_POST[majCountry]',
+            country_id = '$_POST[majCountry]',
             mission_id ='$_POST[majMis]
              WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
