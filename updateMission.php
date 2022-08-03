@@ -171,9 +171,9 @@
               country = $mission[country],
               startDate = $mission[startDate],
               endDate = $mission[endDate],
-                skill = $mission[skill_id],
-                status = $mission[status_id],
-                type = $mission[type_id]
+                skill_id = $mission[skill_id],
+                status_id = $mission[status_id],
+                type_id = $mission[type_id]
               WHERE id = '$_GET[update]'";
             }
         } else {
@@ -185,9 +185,9 @@
           country = '$_POST[majCountry]',
           startDate = '$_POST[startDate]',
           endDate = '$_POST[endDate]',
-          skill = $_POST[skill],
-                status = $_POST[status],
-                type = $_POST[type] 
+          skill_id = $_POST[skill],
+                status_id = $_POST[status],
+                type_id = $_POST[type] 
           WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
             foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
