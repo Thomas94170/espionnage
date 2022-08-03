@@ -21,14 +21,9 @@
     $active_group = 'default';
     $query_builder = TRUE;
 
-    try {
-        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM contacts";
-        mysqli_query($pdo, $sql);
-    } catch (PDOException $e) {
-        echo $sql . '<br>' . $e->getMessage();
-    }
+
+    $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
 
 
     ?>
@@ -69,7 +64,7 @@
                 <select name="majCountry" id="majCountry">
                     <?php
                     try {
-                        $pdo = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
                         foreach (mysqli_query($pdo, 'SELECT * FROM country') as $country) {
                             // echo '<input type="radio" class="checked:bg-blue-500" name="majNat" value= "' . $nationality['id'] . '" />';
 
@@ -195,10 +190,10 @@
                 type = $_POST[type] 
           WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
-            foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
+            foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
 
                 mysqli_query($pdo, "UPDATE missionagent SET agent_id = '$_POST[agent]' WHERE mission_id = '$mission[id]'");
-                mysqli_query($pdo, "UPDATE missioncontact SET contact_id ='$_POST[contact]'WHERE mission_id = '$mission[id]'");
+                mysqli_query($pdo, "UPDATE missioncontact SET contact_id = '$_POST[contact]' WHERE mission_id = '$mission[id]'");
             }
         }
     } catch (PDOException $e) {
