@@ -168,18 +168,21 @@
             }
         } else {
 
-
-            $sql = "UPDATE missions SET title ='$_POST[majTitle]',description = '$_POST[majDescription]',nameCode = '$_POST[majCode]',country = '$_POST[majCountry]',startDate = '$_POST[startDate]',endDate = '$_POST[endDate]' WHERE id = '$_GET[update]'";
+            $sql = "UPDATE missions SET
+          title ='$_POST[majTitle]',
+          description = '$_POST[majDescription]',
+          nameCode = '$_POST[majCode]',
+          country = '$_POST[majCountry]',
+          startDate = '$_POST[startDate]',
+          endDate = '$_POST[endDate]' 
+          WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
             foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
-                mysqli_query($pdo, "UPDATE missionagent SET agent_id ='$_POST[agent]' WHERE mission_id = '$mission[id]'");
-                mysqli_query($pdo, "UPDATE missioncontact SET contact_id ='$_POST[contact]', mission_id = '$mission[id]'");
+
+                mysqli_query($pdo, "UPDATE missionagent SET agent_id = '$_POST[agent]' WHERE mission_id = '$mission[id]'");
+                mysqli_query($pdo, "UPDATE missioncontact SET contact_id ='$_POST[contact]'WHERE mission_id = '$mission[id]'");
             }
         }
-
-
-
-        // $sq3 = "UPDATE skill SET speciality ='$_POST[skill]' WHERE id = '$_GET[update]'";
     } catch (PDOException $e) {
         echo $sql . '<br>' . $e->getMessage();
     }
