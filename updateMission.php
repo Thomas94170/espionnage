@@ -174,7 +174,10 @@
           nameCode = '$_POST[majCode]',
           country = '$_POST[majCountry]',
           startDate = '$_POST[startDate]',
-          endDate = '$_POST[endDate]' 
+          endDate = '$_POST[endDate]',
+          skill = $_POST[skill],
+                status = $_POST[status],
+                type = $_POST[type] 
           WHERE id = '$_GET[update]'";
             mysqli_query($pdo, $sql);
             foreach ($pdo->query("SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
