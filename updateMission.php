@@ -177,7 +177,12 @@
               WHERE id = '$_GET[update]'";
             }
         } else {
-
+            if ($country['id'] != $contact['nationality_id']) {
+                echo "Erreur : le contact doit être du pays de la mission";
+            }
+            if ($skillagent['skill_id'] != $_POST['skill']) {
+                echo "Erreur : l'agent doit avoir la compétence requise";
+            }
             $sql = "UPDATE missions SET
           title ='$_POST[majTitle]',
           description = '$_POST[majDescription]',
