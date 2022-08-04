@@ -135,6 +135,16 @@
             country_id = '$_POST[majCountry]',
             mission_id ='$_POST[majMis]'
              WHERE id = '$_GET[update]'";
+            foreach (mysqli_query($pdo, "SELECT name FROM country WHERE id = '$_POST[majCountry]'") as $country) {
+                foreach (mysqli_query($pdo, "SELECT country FROM missions WHERE id = '$_POST[majMis]'") as $mission) {
+                    if (($country['name'] != $mission['country'])) {
+                        echo 'The hideout must be in the country of the mission';
+                    } else {
+                        mysqli_query($pdo, $sql);
+                        echo 'Add in Database';
+                    }
+                }
+            }
             mysqli_query($pdo, $sql);
         }
     } catch (PDOException $e) {
