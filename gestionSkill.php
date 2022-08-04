@@ -35,6 +35,7 @@
             <form action="#" method="POST">
                 <label for="speciality"> Skill : </label>
                 <input type="text" name="speciality" id="speciality" required>
+
                 <br><br>
                 <input type="submit" value="Add" name="add" class="hover:bg-sky-600 hover:text-slate-900" />
 
