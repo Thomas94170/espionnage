@@ -177,10 +177,10 @@
               WHERE id = '$_GET[update]'";
             }
         } else {
-            if ($mission['country'] != $contact['nationality_id']) {
+            if ($mission['country'] != $_POST['nationality_id']) {
                 echo "Erreur : le contact doit être du pays de la mission";
             }
-            if ($skillagent['skill_id'] != $_POST['skill']) {
+            if ($mission['skill_id'] != $_POST['skill']) {
                 echo '<br>';
                 echo "Erreur : l'agent doit avoir la compétence requise";
             }
