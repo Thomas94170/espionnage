@@ -201,16 +201,13 @@
                                 echo "Erreur : l'agent doit avoir la compétence requise";
                                 header('Location:updateMission.php');
                             } else {
+                                mysqli_query($pdo, $sql);
+                                mysqli_query($pdo, "UPDATE missionagent SET agent_id = '$_POST[agent]' WHERE mission_id = '$mission[id]'");
+                            }
+                            foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
+                                mysqli_query($pdo, "UPDATE missioncontact SET contact_id = '$_POST[contact]' WHERE mission_id = '$mission[id]'");
                             }
                         }
-                    }
-
-
-                    mysqli_query($pdo, $sql);
-                    foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
-
-                        mysqli_query($pdo, "UPDATE missionagent SET agent_id = '$_POST[agent]' WHERE mission_id = '$mission[id]'");
-                        mysqli_query($pdo, "UPDATE missioncontact SET contact_id = '$_POST[contact]' WHERE mission_id = '$mission[id]'");
                     }
                 }
             }
