@@ -179,10 +179,12 @@
         } else {
             if ($mission['country'] != $_POST['nationality_id']) {
                 echo "Erreur : le contact doit être du pays de la mission";
+                header('Location:updateMission.php');
             }
             if ($mission['skill_id'] != $_POST['skill']) {
                 echo '<br>';
                 echo "Erreur : l'agent doit avoir la compétence requise";
+                header('Location:updateMission.php');
             }
             $sql = "UPDATE missions SET
           title ='$_POST[majTitle]',

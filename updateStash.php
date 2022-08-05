@@ -138,7 +138,8 @@
             foreach (mysqli_query($pdo, "SELECT name FROM country WHERE id = '$_POST[majCountry]'") as $country) {
                 foreach (mysqli_query($pdo, "SELECT country FROM missions WHERE id = '$_POST[majMis]'") as $mission) {
                     if (($country['name'] != $mission['country'])) {
-                        echo 'The hideout must be in the country of the mission';
+                        echo "<p class='text-white'>The hideout must be in the country of the mission</p>";
+                        header('Location:updateStash.php');
                     } else {
                         mysqli_query($pdo, $sql);
                         echo 'Add in Database';
