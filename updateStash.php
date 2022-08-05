@@ -132,13 +132,13 @@
             code = '$_POST[majCode]',
             address = '$_POST[majAddress]',
             type = '$_POST[majType]',
-            country_id = '$_POST[majCountry]',
+            country = '$_POST[majCountry]',
             mission_id ='$_POST[majMis]'
              WHERE id = '$_GET[update]'";
             foreach (mysqli_query($pdo, "SELECT name FROM country WHERE id = '$_POST[majCountry]'") as $country) {
                 foreach (mysqli_query($pdo, "SELECT country FROM missions WHERE id = '$_POST[majMis]'") as $mission) {
                     if (($country['name'] != $mission['country'])) {
-                        echo "<p class='text-white'>The hideout must be in the country of the mission</p>";
+                        echo "<p>The hideout must be in the country of the mission</p>";
                         header('Location:updateStash.php');
                     } else {
                         mysqli_query($pdo, $sql);
