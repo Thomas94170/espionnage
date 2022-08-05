@@ -177,31 +177,42 @@
               WHERE id = '$_GET[update]'";
             }
         } else {
-            if ($mission['country'] != $_POST['nationality_id']) {
-                echo "Erreur : le contact doit être du pays de la mission";
-                header('Location:updateMission.php');
-            }
-            if ($mission['skill_id'] != $_POST['skill']) {
-                echo '<br>';
-                echo "Erreur : l'agent doit avoir la compétence requise";
-                header('Location:updateMission.php');
-            }
             $sql = "UPDATE missions SET
-          title ='$_POST[majTitle]',
-          description = '$_POST[majDescription]',
-          nameCode = '$_POST[majCode]',
-          country = '$_POST[majCountry]',
-          startDate = '$_POST[startDate]',
-          endDate = '$_POST[endDate]',
-          skill_id = $_POST[skill],
-                status_id = $_POST[status],
-                type_id = $_POST[type] 
-          WHERE id = '$_GET[update]'";
-            mysqli_query($pdo, $sql);
-            foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
+            title ='$_POST[majTitle]',
+            description = '$_POST[majDescription]',
+            nameCode = '$_POST[majCode]',
+            country = '$_POST[majCountry]',
+            startDate = '$_POST[startDate]',
+            endDate = '$_POST[endDate]',
+            skill_id = $_POST[skill],
+                  status_id = $_POST[status],
+                  type_id = $_POST[type] 
+            WHERE id = '$_GET[update]'";
+            foreach (mysqli_query($pdo, "SELECT * FROM country WHERE name = '$_POST[majCountry]'") as $country) {
+                foreach (mysqli_query($pdo, "SELECT * FROM contacts WHERE id = '$_POST[contact]'") as $contact) {
+                    if ($country['id'] != $contact['nationality_id']) {
+                        echo "Erreur : le contact doit être du pays de la mission";
+                        header('Location:updateMission.php');
+                    } else {
+                        foreach (mysqli_query($pdo, "SELECT * FROM skillagent WHERE agent_id = '$_POST[agent]'") as $skillA) {
 
-                mysqli_query($pdo, "UPDATE missionagent SET agent_id = '$_POST[agent]' WHERE mission_id = '$mission[id]'");
-                mysqli_query($pdo, "UPDATE missioncontact SET contact_id = '$_POST[contact]' WHERE mission_id = '$mission[id]'");
+                            if ($skillA['skill_id'] != $_POST['skill']) {
+                                echo '<br>';
+                                echo "Erreur : l'agent doit avoir la compétence requise";
+                                header('Location:updateMission.php');
+                            } else {
+                            }
+                        }
+                    }
+
+
+                    mysqli_query($pdo, $sql);
+                    foreach (mysqli_query($pdo, "SELECT * FROM missions WHERE title = '$_POST[majTitle]'") as $mission) {
+
+                        mysqli_query($pdo, "UPDATE missionagent SET agent_id = '$_POST[agent]' WHERE mission_id = '$mission[id]'");
+                        mysqli_query($pdo, "UPDATE missioncontact SET contact_id = '$_POST[contact]' WHERE mission_id = '$mission[id]'");
+                    }
+                }
             }
         }
     } catch (PDOException $e) {
