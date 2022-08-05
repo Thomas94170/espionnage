@@ -136,12 +136,12 @@
             foreach (mysqli_query($pdo, "SELECT * FROM country where name = '$_POST[country]'") as $country) {
                 foreach (mysqli_query($pdo, "SELECT * FROM contacts where id = '$_POST[contact]'") as $contact) {
                     if ($country['id'] != $contact['nationality_id']) {
-                        echo "Erreur : le contact doit être du pays de la mission";
+                        echo "<p class = 'text-white'>Erreur : le contact doit être du pays de la mission </p>";
                     } else {
                         // on boucle afin de selectionner la competence de l agent afin qu'elle soit identique à la compétence demandé dans la mission
                         foreach (mysqli_query($pdo, "SELECT * FROM skillagent where agent_id = '$_POST[agent]'") as $skillagent) {
                             if ($skillagent['skill_id'] != $_POST['skill']) {
-                                echo "Erreur : l'agent doit avoir la compétence requise";
+                                echo "<p class = 'text-white'>Erreur : l'agent doit avoir la compétence requise</p>";
                             } else {
                                 mysqli_query($pdo, $sql);
                             }
